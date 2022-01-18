@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import MediaPlayer
 
 struct MediaAlbum {
     init(
         title: String,
-        artwork: Data,
+        artwork: MPMediaItemArtwork?,
         artist: String,
         releaseDate: Date,
         tracks: [Int: MediaTrack] = [:]
@@ -24,7 +25,7 @@ struct MediaAlbum {
 
     // MARK: Internal
     let title: String
-    let artwork: Data
+    let artwork: MPMediaItemArtwork?
     let artist: String
     let releaseDate: Date
 

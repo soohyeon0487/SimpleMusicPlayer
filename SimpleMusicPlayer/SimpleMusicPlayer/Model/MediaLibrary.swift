@@ -28,7 +28,7 @@ class MediaLibrary {
         } else {
             var newAlbum = MediaAlbum(
                 title: track.albumTitle ?? "unknown",
-                artwork: Data(), // track.artwork.,
+                artwork: track.artwork, // track.artwork.,
                 artist: track.artist ?? "unknown",
                 releaseDate: track.releaseDate ?? Date()
             )

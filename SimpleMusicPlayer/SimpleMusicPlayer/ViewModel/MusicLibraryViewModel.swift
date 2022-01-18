@@ -41,7 +41,11 @@ class MusicLibraryViewModel {
     }
 
     private func fetchMediaQueryItems() {
+        let mediaLibrary = MediaLibrary()
         let items = self.mediaPlayerManager.fetchMediaQueryItems()
-        print("items", items.count)
+        for item in items {
+            mediaLibrary.add(track: item)
+        }
+        print(mediaLibrary.albums.count)
     }
 }
