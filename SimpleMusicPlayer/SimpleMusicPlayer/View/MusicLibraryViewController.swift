@@ -31,7 +31,7 @@ class MusicLibraryViewController: UIViewController {
         viewLayout.itemSize = CGSize(width: itemWidth, height: itemWidth * 1.4)
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemGray6
         collectionView.register(cellClass: MediaCollectionViewCell.self)
         return collectionView
     }()

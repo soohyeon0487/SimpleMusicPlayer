@@ -30,6 +30,12 @@ class MediaCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: UI Property
+    private lazy var shadowBaseView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
+        return view
+    }()
     private lazy var artworkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -66,20 +72,27 @@ class MediaCollectionViewCell: UICollectionViewCell {
 
     private func drawUI() {
         self.backgroundColor = .white
-        self.layer.masksToBounds = true
         self.layer.cornerRadius = 8
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowRadius = 3
 
-        self.addSubview(self.artworkImageView)
+        self.addSubview(self.shadowBaseView)
+        self.shadowBaseView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        self.shadowBaseView.addSubview(self.artworkImageView)
         self.artworkImageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(self.artworkImageView.snp.width)
         }
-        self.addSubview(self.albumTitleLabel)
+        self.shadowBaseView.addSubview(self.albumTitleLabel)
         self.albumTitleLabel.snp.makeConstraints {
             $0.top.equalTo(self.artworkImageView.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(10)
         }
-        self.addSubview(self.albumArtistLabel)
+        self.shadowBaseView.addSubview(self.albumArtistLabel)
         self.albumArtistLabel.snp.makeConstraints {
             $0.top.equalTo(self.albumTitleLabel.snp.bottom).offset(4)
             $0.leading.trailing.bottom.equalToSuperview().inset(10)
