@@ -25,11 +25,13 @@ class MusicLibraryViewController: UIViewController {
         collectionView.backgroundColor = .gray.withAlphaComponent(0.3)
         return collectionView
     }()
-
+    // MARK: Class Property
+    private let viewModel = MusicLibraryViewModel()
     // MARK: Life Cycle Function
     override func viewDidLoad() {
         super.viewDidLoad()
         self.drawUI()
+        self.viewModel.viewDidLoad()
     }
 
     // MARK: Class Method
