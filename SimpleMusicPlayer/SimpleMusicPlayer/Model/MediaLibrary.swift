@@ -8,7 +8,11 @@
 import Foundation
 import MediaPlayer
 
-class MediaLibrary {
+class MediaLibrary: Equatable {
+    static func == (lhs: MediaLibrary, rhs: MediaLibrary) -> Bool {
+        lhs.innerAlbums == rhs.innerAlbums
+    }
+
     // MARK: Internal
     var albums: [MediaAlbum] {
         return innerAlbums.values.sorted {

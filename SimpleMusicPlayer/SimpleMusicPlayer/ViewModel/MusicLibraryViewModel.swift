@@ -15,7 +15,7 @@ class MusicLibraryViewModel {
 
     // MARK: Output
     let authorizationState = CurrentValueSubject<Bool?, Never>(nil)
-    let mediaAlbumInfos = CurrentValueSubject<MediaLibrary?, Never>(nil)
+    let mediaLibrary = CurrentValueSubject<MediaLibrary?, Never>(nil)
 
     // MARK: Internal
     func viewDidLoad() {
@@ -46,6 +46,6 @@ class MusicLibraryViewModel {
         for item in items {
             mediaLibrary.add(track: item)
         }
-        print(mediaLibrary.albums.count)
+        self.mediaLibrary.send(mediaLibrary)
     }
 }

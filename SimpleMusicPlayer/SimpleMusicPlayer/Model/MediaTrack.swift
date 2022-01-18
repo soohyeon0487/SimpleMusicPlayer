@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct MediaTrack {
+struct MediaTrack: Hashable {
     let title: String
 }

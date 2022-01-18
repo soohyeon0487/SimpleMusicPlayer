@@ -8,7 +8,7 @@
 import Foundation
 import MediaPlayer
 
-struct MediaAlbum {
+struct MediaAlbum: Hashable {
     init(
         title: String,
         artwork: MPMediaItemArtwork?,
@@ -21,6 +21,10 @@ struct MediaAlbum {
         self.artist = artist
         self.releaseDate = releaseDate
         self.tracks = tracks
+    }
+
+    static func == (lhs: MediaAlbum, rhs: MediaAlbum) -> Bool {
+        return lhs.title == rhs.title
     }
 
     // MARK: Internal

@@ -25,25 +25,28 @@ class MediaCollectionViewCell: UICollectionViewCell {
         self.artworkImageView.image = album.artwork?.image(
             at: CGSize(width: self.bounds.width, height: self.bounds.width)
         )
+        self.albumTitleLabel.text = album.title
+        self.albumArtistLabel.text = album.artist
     }
 
     // MARK: UI Property
     private lazy var artworkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     private lazy var albumTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .preferredFont(forTextStyle: .title2)
+        label.font = .preferredFont(forTextStyle: .headline)
         label.lineBreakMode = .byTruncatingTail
         return label
     }()
     private lazy var albumArtistLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.font = .preferredFont(forTextStyle: .body)
+        label.font = .preferredFont(forTextStyle: .subheadline)
         label.lineBreakMode = .byTruncatingTail
         return label
     }()
@@ -62,6 +65,10 @@ class MediaCollectionViewCell: UICollectionViewCell {
     }
 
     private func drawUI() {
+        self.backgroundColor = .white
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 8
+
         self.addSubview(self.artworkImageView)
         self.artworkImageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -70,12 +77,12 @@ class MediaCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.albumTitleLabel)
         self.albumTitleLabel.snp.makeConstraints {
             $0.top.equalTo(self.artworkImageView.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview().inset(8)
+            $0.leading.trailing.equalToSuperview().inset(10)
         }
         self.addSubview(self.albumArtistLabel)
         self.albumArtistLabel.snp.makeConstraints {
-            $0.top.equalTo(self.artworkImageView.snp.bottom).offset(4)
-            $0.leading.trailing.bottom.equalToSuperview().inset(8)
+            $0.top.equalTo(self.albumTitleLabel.snp.bottom).offset(4)
+            $0.leading.trailing.bottom.equalToSuperview().inset(10)
         }
     }
 }
