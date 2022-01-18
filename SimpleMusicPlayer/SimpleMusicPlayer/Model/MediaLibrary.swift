@@ -16,9 +16,9 @@ class MediaLibrary: Equatable {
     // MARK: Internal
     var albums: [MediaAlbum] {
         return innerAlbums.values.sorted {
-            if $0.releaseDate < $1.releaseDate {
+            if $0.releaseDate > $1.releaseDate {
                 return true
-            } else if $0.releaseDate > $1.releaseDate {
+            } else if $0.releaseDate < $1.releaseDate {
                 return false
             } else {
                 return $0.title < $1.title
