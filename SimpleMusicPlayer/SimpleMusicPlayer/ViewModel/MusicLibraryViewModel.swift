@@ -15,7 +15,7 @@ class MusicLibraryViewModel {
 
     // MARK: Output
     let authorizationState = CurrentValueSubject<Bool?, Never>(nil)
-    let mediaAlbumInfos = CurrentValueSubject<[MediaAlbumInfo], Never>([])
+    let mediaAlbumInfos = CurrentValueSubject<MediaLibrary?, Never>(nil)
 
     // MARK: Internal
     func viewDidLoad() {

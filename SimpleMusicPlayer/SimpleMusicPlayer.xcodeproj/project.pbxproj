@@ -17,8 +17,10 @@
 		918F57BB2796EA6100FA5C5F /* MusicLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57BA2796EA6100FA5C5F /* MusicLibraryViewModel.swift */; };
 		918F57BD2796EAA300FA5C5F /* MediaPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57BC2796EAA300FA5C5F /* MediaPlayerManager.swift */; };
 		918F57BF2796EABB00FA5C5F /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57BE2796EABB00FA5C5F /* AudioPlayerManager.swift */; };
-		918F57C22796EE5B00FA5C5F /* MediaAlbumInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57C12796EE5B00FA5C5F /* MediaAlbumInfo.swift */; };
+		918F57C22796EE5B00FA5C5F /* MediaAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57C12796EE5B00FA5C5F /* MediaAlbum.swift */; };
 		918F57C42796EED200FA5C5F /* MediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57C32796EED200FA5C5F /* MediaCollectionViewCell.swift */; };
+		918F57C7279701C700FA5C5F /* MediaTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57C6279701C700FA5C5F /* MediaTrack.swift */; };
+		918F57C92797040900FA5C5F /* MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57C82797040900FA5C5F /* MediaLibrary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +35,10 @@
 		918F57BA2796EA6100FA5C5F /* MusicLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibraryViewModel.swift; sourceTree = "<group>"; };
 		918F57BC2796EAA300FA5C5F /* MediaPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerManager.swift; sourceTree = "<group>"; };
 		918F57BE2796EABB00FA5C5F /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
-		918F57C12796EE5B00FA5C5F /* MediaAlbumInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAlbumInfo.swift; sourceTree = "<group>"; };
+		918F57C12796EE5B00FA5C5F /* MediaAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAlbum.swift; sourceTree = "<group>"; };
 		918F57C32796EED200FA5C5F /* MediaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionViewCell.swift; sourceTree = "<group>"; };
+		918F57C6279701C700FA5C5F /* MediaTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrack.swift; sourceTree = "<group>"; };
+		918F57C82797040900FA5C5F /* MediaLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +124,9 @@
 		918F57C02796EC1E00FA5C5F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				918F57C12796EE5B00FA5C5F /* MediaAlbumInfo.swift */,
+				918F57C82797040900FA5C5F /* MediaLibrary.swift */,
+				918F57C12796EE5B00FA5C5F /* MediaAlbum.swift */,
+				918F57C6279701C700FA5C5F /* MediaTrack.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,10 +240,12 @@
 				918F57BB2796EA6100FA5C5F /* MusicLibraryViewModel.swift in Sources */,
 				918F57BF2796EABB00FA5C5F /* AudioPlayerManager.swift in Sources */,
 				918F57A12796DEE100FA5C5F /* MusicLibraryViewController.swift in Sources */,
-				918F57C22796EE5B00FA5C5F /* MediaAlbumInfo.swift in Sources */,
+				918F57C7279701C700FA5C5F /* MediaTrack.swift in Sources */,
+				918F57C22796EE5B00FA5C5F /* MediaAlbum.swift in Sources */,
 				918F57BD2796EAA300FA5C5F /* MediaPlayerManager.swift in Sources */,
 				918F579D2796DEE100FA5C5F /* AppDelegate.swift in Sources */,
 				918F579F2796DEE100FA5C5F /* SceneDelegate.swift in Sources */,
+				918F57C92797040900FA5C5F /* MediaLibrary.swift in Sources */,
 				918F57C42796EED200FA5C5F /* MediaCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
