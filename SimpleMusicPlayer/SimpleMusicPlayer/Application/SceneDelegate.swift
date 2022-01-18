@@ -18,7 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        let navigationViewController = UINavigationController(rootViewController: ViewController())
+        let navigationViewController = UINavigationController(
+            rootViewController: MusicLibraryViewController()
+        )
+        navigationViewController.navigationBar.prefersLargeTitles = true
+        navigationViewController.navigationBar.topItem?.title = "라이브러리"
+        navigationViewController.navigationItem.largeTitleDisplayMode = .always
         window.rootViewController = navigationViewController
         window.makeKeyAndVisible()
         self.window = window
