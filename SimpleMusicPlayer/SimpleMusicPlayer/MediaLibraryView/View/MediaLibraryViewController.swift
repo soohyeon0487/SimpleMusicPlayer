@@ -31,6 +31,7 @@ class MediaLibraryViewController: UIViewController {
         viewLayout.itemSize = CGSize(width: itemWidth, height: itemWidth * 1.4)
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
+        collectionView.delegate = self
         collectionView.backgroundColor = .systemGray6
         collectionView.register(cellClass: MediaCollectionViewCell.self)
         return collectionView
@@ -49,6 +50,16 @@ class MediaLibraryViewController: UIViewController {
         self.drawUI()
         self.bindUI()
         self.viewModel.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+
+    override func viewWillDisappear (_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     // MARK: Class Method
@@ -104,5 +115,16 @@ class MediaLibraryViewController: UIViewController {
             self.dataSourceSnapshot,
             animatingDifferences: false
         )
+    }
+}
+
+extension MediaLibraryViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selected = self.viewModel.mediaLibrary?.albums[safe: indexPath.item] else {
+            return
+        }
+        let albumViewController = MediaAlbumViewController()
+        albumViewController.setMediaAlbum(selected)
+        self.navigationController?.pushViewController(albumViewController, animated: true)
     }
 }

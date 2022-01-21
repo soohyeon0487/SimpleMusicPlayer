@@ -27,6 +27,10 @@
 		91B51149279AFF5500235E07 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B51148279AFF5500235E07 /* MiniPlayerViewController.swift */; };
 		91B5114B279AFF8800235E07 /* MainPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B5114A279AFF8800235E07 /* MainPlayerViewController.swift */; };
 		91B5114D279B01EE00235E07 /* HalfPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B5114C279B01EE00235E07 /* HalfPresentationController.swift */; };
+		91B51153279B0A9B00235E07 /* MediaAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B51152279B0A9B00235E07 /* MediaAlbumViewController.swift */; };
+		91B51155279B0F2900235E07 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B51154279B0F2900235E07 /* Array+Extension.swift */; };
+		91B51157279B165E00235E07 /* MediaAlbumInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B51156279B165E00235E07 /* MediaAlbumInfoView.swift */; };
+		91B51159279B1D6A00235E07 /* MediaPlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B51158279B1D6A00235E07 /* MediaPlayButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +55,10 @@
 		91B51148279AFF5500235E07 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		91B5114A279AFF8800235E07 /* MainPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerViewController.swift; sourceTree = "<group>"; };
 		91B5114C279B01EE00235E07 /* HalfPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfPresentationController.swift; sourceTree = "<group>"; };
+		91B51152279B0A9B00235E07 /* MediaAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAlbumViewController.swift; sourceTree = "<group>"; };
+		91B51154279B0F2900235E07 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		91B51156279B165E00235E07 /* MediaAlbumInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAlbumInfoView.swift; sourceTree = "<group>"; };
+		91B51158279B1D6A00235E07 /* MediaPlayButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,7 @@
 				918F57B62796E9CC00FA5C5F /* Application */,
 				918F57C02796EC1E00FA5C5F /* Model */,
 				91B51142279AFE2E00235E07 /* MediaLibraryView */,
+				91B5114F279B0A6200235E07 /* MediaAlbumView */,
 				91B51143279AFE5300235E07 /* MusicPlayerView */,
 				918F57B92796E9F600FA5C5F /* Manager */,
 				918F57C52796EF4100FA5C5F /* Extensions */,
@@ -147,6 +156,7 @@
 		918F57C52796EF4100FA5C5F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				91B51154279B0F2900235E07 /* Array+Extension.swift */,
 				918F57CB2797120500FA5C5F /* UICollectionViewCell+Extension.swift */,
 				918F57CD2797125300FA5C5F /* UICollectionView+Extension.swift */,
 			);
@@ -182,6 +192,32 @@
 			sourceTree = "<group>";
 		};
 		91B51145279AFE7500235E07 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		91B5114F279B0A6200235E07 /* MediaAlbumView */ = {
+			isa = PBXGroup;
+			children = (
+				91B51150279B0A6C00235E07 /* View */,
+				91B51151279B0A7300235E07 /* ViewModel */,
+			);
+			path = MediaAlbumView;
+			sourceTree = "<group>";
+		};
+		91B51150279B0A6C00235E07 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				91B51152279B0A9B00235E07 /* MediaAlbumViewController.swift */,
+				91B51156279B165E00235E07 /* MediaAlbumInfoView.swift */,
+				91B51158279B1D6A00235E07 /* MediaPlayButtonView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		91B51151279B0A7300235E07 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -289,9 +325,13 @@
 			files = (
 				91B51147279AFE9F00235E07 /* BaseViewController.swift in Sources */,
 				918F57CE2797125300FA5C5F /* UICollectionView+Extension.swift in Sources */,
+				91B51159279B1D6A00235E07 /* MediaPlayButtonView.swift in Sources */,
 				91B5114B279AFF8800235E07 /* MainPlayerViewController.swift in Sources */,
+				91B51155279B0F2900235E07 /* Array+Extension.swift in Sources */,
 				918F57BB2796EA6100FA5C5F /* MediaLibraryViewModel.swift in Sources */,
+				91B51157279B165E00235E07 /* MediaAlbumInfoView.swift in Sources */,
 				918F57BF2796EABB00FA5C5F /* AudioPlayerManager.swift in Sources */,
+				91B51153279B0A9B00235E07 /* MediaAlbumViewController.swift in Sources */,
 				918F57A12796DEE100FA5C5F /* MediaLibraryViewController.swift in Sources */,
 				918F57C7279701C700FA5C5F /* MediaTrack.swift in Sources */,
 				91B51149279AFF5500235E07 /* MiniPlayerViewController.swift in Sources */,
