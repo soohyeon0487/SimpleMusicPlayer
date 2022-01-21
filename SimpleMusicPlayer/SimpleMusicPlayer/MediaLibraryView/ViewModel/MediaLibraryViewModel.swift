@@ -1,5 +1,5 @@
 //
-//  MusicLibraryViewModel.swift
+//  MediaLibraryViewModel.swift
 //  SimpleMusicPlayer
 //
 //  Created by Soohyeon Lee on 2022/01/18.
@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class MusicLibraryViewModel {
+class MediaLibraryViewModel {
     init() {
         self.bindEvent()
     }

@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-class MusicLibraryViewController: UIViewController {
+class MediaLibraryViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, MediaAlbum>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, MediaAlbum>
 
@@ -37,7 +37,7 @@ class MusicLibraryViewController: UIViewController {
     }()
 
     // MARK: Class Property
-    private let viewModel = MusicLibraryViewModel()
+    private let viewModel = MediaLibraryViewModel()
 
     private var cancelBag = Set<AnyCancellable>()
     private var dataSource: DataSource?
@@ -53,8 +53,14 @@ class MusicLibraryViewController: UIViewController {
 
     // MARK: Class Method
     private func drawUI() {
-        self.view.backgroundColor = .systemPurple
+        self.view.backgroundColor = .init(named: "color.topBar.background")
+        self.drawNavigationBar()
         self.drawCollectionView()
+    }
+
+    private func drawNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = "라이브러리"
+        self.navigationController?.navigationBar.isTranslucent = false
     }
 
     private func drawCollectionView() {
