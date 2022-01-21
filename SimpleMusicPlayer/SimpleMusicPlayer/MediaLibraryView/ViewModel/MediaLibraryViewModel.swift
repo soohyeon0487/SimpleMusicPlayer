@@ -14,14 +14,14 @@ class MediaLibraryViewModel {
     }
 
     // MARK: Output
-    let authorizationState = CurrentValueSubject<Bool?, Never>(nil)
-    let mediaLibrary = CurrentValueSubject<MediaLibrary?, Never>(nil)
+    @Published var authorizationState: Bool?
+    @Published var mediaLibrary: MediaLibrary?
 
     // MARK: Internal
     func viewDidLoad() {
         self.mediaPlayerManager.requestAuthorization()
             .sink { [weak self] state in
-                self?.authorizationState.send(state)
+                self?.authorizationState = state
             }
             .store(in: &cancelBag)
     }
@@ -32,7 +32,7 @@ class MediaLibraryViewModel {
     private let mediaPlayerManager = MediaPlayerManager.shared
 
     private func bindEvent() {
-        self.authorizationState
+        self.$authorizationState
             .filter { $0 == true }
             .sink { [weak self] _ in
                 self?.fetchMediaQueryItems()
@@ -41,11 +41,11 @@ class MediaLibraryViewModel {
     }
 
     private func fetchMediaQueryItems() {
-        let mediaLibrary = MediaLibrary()
+        let newMediaLibrary = MediaLibrary()
         let items = self.mediaPlayerManager.fetchMediaQueryItems()
         for item in items {
-            mediaLibrary.add(track: item)
+            newMediaLibrary.add(track: item)
         }
-        self.mediaLibrary.send(mediaLibrary)
+        self.mediaLibrary = newMediaLibrary
     }
 }

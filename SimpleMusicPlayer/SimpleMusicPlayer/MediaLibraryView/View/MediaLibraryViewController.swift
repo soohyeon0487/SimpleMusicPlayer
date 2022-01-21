@@ -85,7 +85,7 @@ class MediaLibraryViewController: UIViewController {
     }
 
     private func bindUI() {
-        self.viewModel.mediaLibrary
+        self.viewModel.$mediaLibrary
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] library in
