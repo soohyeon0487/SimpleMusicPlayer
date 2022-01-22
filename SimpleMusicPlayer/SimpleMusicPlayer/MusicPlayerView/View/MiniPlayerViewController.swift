@@ -16,6 +16,10 @@ class MiniPlayerViewController: UIViewController {
     // MARK: Internal
     weak var delegate: MiniPlayerActionDelegate?
 
+    func setViewModel(viewModel: MediaPlayerViewModel) {
+        self.viewModel = viewModel
+    }
+
     // MARK: UI Property
     private lazy var baseView: UIView = {
         let view = UIView()
@@ -74,7 +78,7 @@ class MiniPlayerViewController: UIViewController {
     }()
 
     // MARK: Class Property
-    private let viewModel = MiniPlayerViewModel()
+    private var viewModel: MediaPlayerViewModel?
     private var cancelBag = Set<AnyCancellable>()
 
     // MARK: Life Cycle Function

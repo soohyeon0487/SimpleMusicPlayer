@@ -1,5 +1,5 @@
 //
-//  MiniPlayerViewModel.swift
+//  MediaPlayerViewModel.swift
 //  SimpleMusicPlayer
 //
 //  Created by Soohyeon Lee on 2022/01/22.
@@ -10,7 +10,7 @@ import Foundation
 
 import MediaPlayer
 
-class MiniPlayerViewModel {
+class MediaPlayerViewModel {
     init() {
         self.bindEvent()
     }

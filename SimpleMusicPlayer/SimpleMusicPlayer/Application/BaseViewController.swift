@@ -25,15 +25,19 @@ class BaseViewController: UIViewController {
     private lazy var miniPlayerVC: UIViewController = {
         let viewController = MiniPlayerViewController()
         viewController.delegate = self
+        viewController.setViewModel(viewModel: self.playerViewModel)
         return viewController
     }()
     private lazy var mainPlayerVC: UIViewController = {
         let viewController = MainPlayerViewController()
+        viewController.setViewModel(viewModel: self.playerViewModel)
         viewController.modalTransitionStyle = .coverVertical
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
         return viewController
     }()
+
+    private let playerViewModel = MediaPlayerViewModel()
 
     private func drawUI() {
         self.view.backgroundColor = .white
