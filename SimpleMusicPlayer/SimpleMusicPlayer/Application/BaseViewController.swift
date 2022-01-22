@@ -28,7 +28,7 @@ class BaseViewController: UIViewController {
         return viewController
     }()
     private lazy var mainPlayerVC: UIViewController = {
-        let viewController = MiniPlayerViewController()
+        let viewController = MainPlayerViewController()
         viewController.modalTransitionStyle = .coverVertical
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
@@ -41,7 +41,7 @@ class BaseViewController: UIViewController {
         self.view.addSubview(miniPlayerVC.view)
         self.miniPlayerVC.view.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalTo(self.view.snp.bottomMargin).offset(-60)
+            $0.top.equalTo(self.view.snp.bottomMargin).offset(-80)
         }
         self.addChild(contentVC)
         self.view.addSubview(contentVC.view)
@@ -53,7 +53,7 @@ class BaseViewController: UIViewController {
 
     private func configureNavigationBar() {
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .init(named: "color.topBar.background")
+        appearance.backgroundColor = .init(named: "color.primaryTint")
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().tintColor = .white

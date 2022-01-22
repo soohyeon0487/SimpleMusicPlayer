@@ -64,7 +64,7 @@ class MediaLibraryViewController: UIViewController {
 
     // MARK: Class Method
     private func drawUI() {
-        self.view.backgroundColor = .init(named: "color.topBar.background")
+        self.view.backgroundColor = .init(named: "color.primaryTint")
         self.drawNavigationBar()
         self.drawCollectionView()
     }

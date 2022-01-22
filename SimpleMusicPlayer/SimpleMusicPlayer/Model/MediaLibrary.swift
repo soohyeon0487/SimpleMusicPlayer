@@ -28,7 +28,7 @@ class MediaLibrary: Equatable {
 
     func add(track: MPMediaItem) {
         if var album = _albums[track.albumPersistentID] {
-            album.add(number: track.albumTrackNumber, title: track.title ?? "unknown")
+            album.add(track)
             self._albums[track.albumPersistentID] = album
         } else {
             var newAlbum = MediaAlbum(
@@ -37,7 +37,7 @@ class MediaLibrary: Equatable {
                 artist: track.artist ?? "unknown",
                 releaseDate: track.releaseDate ?? Date()
             )
-            newAlbum.add(number: track.albumTrackNumber, title: track.title ?? "unknown")
+            newAlbum.add(track)
             self._albums[track.albumPersistentID] = newAlbum
         }
     }

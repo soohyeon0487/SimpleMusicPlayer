@@ -29,7 +29,7 @@ class MediaLibraryViewModel {
     // MARK: Private
     private var cancelBag = Set<AnyCancellable>()
     
-    private let mediaPlayerManager = MediaPlayerManager.shared
+    private let mediaPlayerManager = MediaFetchManager.shared
 
     private func bindEvent() {
         self.$authorizationState

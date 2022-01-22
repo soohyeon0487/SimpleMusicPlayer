@@ -16,26 +16,22 @@ class MediaAlbumViewModel {
     // MARK: Output
     @Published var mediaAlbum: MediaAlbum?
 
-    // MARK: Internal
-    func viewDidLoad() {
-
-    }
-
     func playButtonTapped() {
         guard let album = self.mediaAlbum else {
             return
         }
-        print(album.tracks)
+        self.playerManager.setPlayList(album.tracks, shuffled: false)
     }
 
     func randomPlayButtonTapped() {
         guard let album = self.mediaAlbum else {
             return
         }
-        print(album.tracks.shuffled())
+        self.playerManager.setPlayList(album.tracks, shuffled: true)
     }
 
     // MARK: Private
+    private let playerManager = MediaPlayerManager.shared
     private var cancelBag = Set<AnyCancellable>()
 
     private func bindEvent() {

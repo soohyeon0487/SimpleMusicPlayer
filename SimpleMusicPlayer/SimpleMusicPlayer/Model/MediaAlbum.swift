@@ -31,18 +31,19 @@ struct MediaAlbum: Hashable {
     let artist: String
     let releaseDate: Date
 
-    var tracks: [MediaTrack] {
-        return _tracks.sorted()
+    var tracks: [MPMediaItem] {
+        return _tracks.sorted { lhs, rhs in
+            lhs.albumTrackNumber < rhs.albumTrackNumber
+        }
     }
-
     var count: Int {
         return _tracks.count
     }
 
-    mutating func add(number: Int, title: String) {
-        _tracks.append(MediaTrack(number: number, title: title))
+    mutating func add(_ track: MPMediaItem) {
+        _tracks.append(track)
     }
 
     // MARK: Private
-    private var _tracks: [MediaTrack] = []
+    private var _tracks: [MPMediaItem] = []
 }

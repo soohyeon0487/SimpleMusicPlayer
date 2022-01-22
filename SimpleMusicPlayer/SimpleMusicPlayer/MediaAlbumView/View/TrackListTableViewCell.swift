@@ -7,6 +7,7 @@
 
 import UIKit
 
+import MediaPlayer
 import SnapKit
 
 class TrackListTableViewCell: UITableViewCell {
@@ -21,8 +22,8 @@ class TrackListTableViewCell: UITableViewCell {
     }
 
     // MARK: Internal
-    func setTrack(_ track: MediaTrack) {
-        self.trackNumberLabel.text = "\(track.number)"
+    func setTrack(_ track: MPMediaItem) {
+        self.trackNumberLabel.text = "\(track.albumTrackNumber)"
         self.trackTitleLabel.text = track.title
     }
 

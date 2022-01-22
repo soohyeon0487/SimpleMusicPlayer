@@ -11,6 +11,9 @@
 		9152AEA5279B96EE00F3AABC /* TrackListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEA4279B96EE00F3AABC /* TrackListTableViewCell.swift */; };
 		9152AEA7279B97D700F3AABC /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEA6279B97D700F3AABC /* UITableViewCell+Extension.swift */; };
 		9152AEA9279B97F800F3AABC /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEA8279B97F800F3AABC /* UITableView+Extension.swift */; };
+		9152AEAB279BB46300F3AABC /* MiniPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEAA279BB46300F3AABC /* MiniPlayerViewModel.swift */; };
+		9152AEAD279BB4A500F3AABC /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEAC279BB4A500F3AABC /* NotificationName+Extension.swift */; };
+		9152AEB0279BD33D00F3AABC /* ResourceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEAF279BD33D00F3AABC /* ResourceKey.swift */; };
 		918F579D2796DEE100FA5C5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F579C2796DEE100FA5C5F /* AppDelegate.swift */; };
 		918F579F2796DEE100FA5C5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F579E2796DEE100FA5C5F /* SceneDelegate.swift */; };
 		918F57A12796DEE100FA5C5F /* MediaLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57A02796DEE100FA5C5F /* MediaLibraryViewController.swift */; };
@@ -19,11 +22,10 @@
 		918F57B12796E05900FA5C5F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 918F57B02796E05900FA5C5F /* .swiftlint.yml */; };
 		918F57B52796E84B00FA5C5F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 918F57B42796E84B00FA5C5F /* SnapKit */; };
 		918F57BB2796EA6100FA5C5F /* MediaLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57BA2796EA6100FA5C5F /* MediaLibraryViewModel.swift */; };
-		918F57BD2796EAA300FA5C5F /* MediaPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57BC2796EAA300FA5C5F /* MediaPlayerManager.swift */; };
-		918F57BF2796EABB00FA5C5F /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57BE2796EABB00FA5C5F /* AudioPlayerManager.swift */; };
+		918F57BD2796EAA300FA5C5F /* MediaFetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57BC2796EAA300FA5C5F /* MediaFetchManager.swift */; };
+		918F57BF2796EABB00FA5C5F /* MediaPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57BE2796EABB00FA5C5F /* MediaPlayerManager.swift */; };
 		918F57C22796EE5B00FA5C5F /* MediaAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57C12796EE5B00FA5C5F /* MediaAlbum.swift */; };
 		918F57C42796EED200FA5C5F /* MediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57C32796EED200FA5C5F /* MediaCollectionViewCell.swift */; };
-		918F57C7279701C700FA5C5F /* MediaTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57C6279701C700FA5C5F /* MediaTrack.swift */; };
 		918F57C92797040900FA5C5F /* MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57C82797040900FA5C5F /* MediaLibrary.swift */; };
 		918F57CC2797120500FA5C5F /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57CB2797120500FA5C5F /* UICollectionViewCell+Extension.swift */; };
 		918F57CE2797125300FA5C5F /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57CD2797125300FA5C5F /* UICollectionView+Extension.swift */; };
@@ -42,6 +44,9 @@
 		9152AEA4279B96EE00F3AABC /* TrackListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTableViewCell.swift; sourceTree = "<group>"; };
 		9152AEA6279B97D700F3AABC /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		9152AEA8279B97F800F3AABC /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		9152AEAA279BB46300F3AABC /* MiniPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewModel.swift; sourceTree = "<group>"; };
+		9152AEAC279BB4A500F3AABC /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
+		9152AEAF279BD33D00F3AABC /* ResourceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceKey.swift; sourceTree = "<group>"; };
 		918F57992796DEE100FA5C5F /* SimpleMusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleMusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		918F579C2796DEE100FA5C5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		918F579E2796DEE100FA5C5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,11 +56,10 @@
 		918F57AA2796DEE200FA5C5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		918F57B02796E05900FA5C5F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		918F57BA2796EA6100FA5C5F /* MediaLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryViewModel.swift; sourceTree = "<group>"; };
-		918F57BC2796EAA300FA5C5F /* MediaPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerManager.swift; sourceTree = "<group>"; };
-		918F57BE2796EABB00FA5C5F /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
+		918F57BC2796EAA300FA5C5F /* MediaFetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFetchManager.swift; sourceTree = "<group>"; };
+		918F57BE2796EABB00FA5C5F /* MediaPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerManager.swift; sourceTree = "<group>"; };
 		918F57C12796EE5B00FA5C5F /* MediaAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAlbum.swift; sourceTree = "<group>"; };
 		918F57C32796EED200FA5C5F /* MediaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionViewCell.swift; sourceTree = "<group>"; };
-		918F57C6279701C700FA5C5F /* MediaTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrack.swift; sourceTree = "<group>"; };
 		918F57C82797040900FA5C5F /* MediaLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibrary.swift; sourceTree = "<group>"; };
 		918F57CB2797120500FA5C5F /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
 		918F57CD2797125300FA5C5F /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
@@ -81,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9152AEAE279BD32D00F3AABC /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				9152AEAF279BD33D00F3AABC /* ResourceKey.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		918F57902796DEE100FA5C5F = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +119,7 @@
 				91B5114F279B0A6200235E07 /* MediaAlbumView */,
 				91B51143279AFE5300235E07 /* MusicPlayerView */,
 				918F57B92796E9F600FA5C5F /* Manager */,
+				9152AEAE279BD32D00F3AABC /* Enums */,
 				918F57C52796EF4100FA5C5F /* Extensions */,
 				918F57A52796DEE200FA5C5F /* Assets.xcassets */,
 				918F57A72796DEE200FA5C5F /* LaunchScreen.storyboard */,
@@ -145,8 +158,8 @@
 		918F57B92796E9F600FA5C5F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				918F57BC2796EAA300FA5C5F /* MediaPlayerManager.swift */,
-				918F57BE2796EABB00FA5C5F /* AudioPlayerManager.swift */,
+				918F57BC2796EAA300FA5C5F /* MediaFetchManager.swift */,
+				918F57BE2796EABB00FA5C5F /* MediaPlayerManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -156,7 +169,6 @@
 			children = (
 				918F57C82797040900FA5C5F /* MediaLibrary.swift */,
 				918F57C12796EE5B00FA5C5F /* MediaAlbum.swift */,
-				918F57C6279701C700FA5C5F /* MediaTrack.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				91B51154279B0F2900235E07 /* Array+Extension.swift */,
+				9152AEAC279BB4A500F3AABC /* NotificationName+Extension.swift */,
 				918F57CB2797120500FA5C5F /* UICollectionViewCell+Extension.swift */,
 				918F57CD2797125300FA5C5F /* UICollectionView+Extension.swift */,
 				9152AEA6279B97D700F3AABC /* UITableViewCell+Extension.swift */,
@@ -204,6 +217,7 @@
 		91B51145279AFE7500235E07 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9152AEAA279BB46300F3AABC /* MiniPlayerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -343,21 +357,23 @@
 				918F57BB2796EA6100FA5C5F /* MediaLibraryViewModel.swift in Sources */,
 				91B51157279B165E00235E07 /* MediaAlbumInfoView.swift in Sources */,
 				9152AEA5279B96EE00F3AABC /* TrackListTableViewCell.swift in Sources */,
-				918F57BF2796EABB00FA5C5F /* AudioPlayerManager.swift in Sources */,
+				918F57BF2796EABB00FA5C5F /* MediaPlayerManager.swift in Sources */,
 				91B51153279B0A9B00235E07 /* MediaAlbumViewController.swift in Sources */,
 				918F57A12796DEE100FA5C5F /* MediaLibraryViewController.swift in Sources */,
-				918F57C7279701C700FA5C5F /* MediaTrack.swift in Sources */,
 				91B51149279AFF5500235E07 /* MiniPlayerViewController.swift in Sources */,
 				918F57C22796EE5B00FA5C5F /* MediaAlbum.swift in Sources */,
-				918F57BD2796EAA300FA5C5F /* MediaPlayerManager.swift in Sources */,
+				918F57BD2796EAA300FA5C5F /* MediaFetchManager.swift in Sources */,
 				918F579D2796DEE100FA5C5F /* AppDelegate.swift in Sources */,
+				9152AEB0279BD33D00F3AABC /* ResourceKey.swift in Sources */,
 				918F579F2796DEE100FA5C5F /* SceneDelegate.swift in Sources */,
 				91B5114D279B01EE00235E07 /* HalfPresentationController.swift in Sources */,
 				9152AEA3279B8E5600F3AABC /* MediaAlbumViewModel.swift in Sources */,
 				918F57C92797040900FA5C5F /* MediaLibrary.swift in Sources */,
 				9152AEA7279B97D700F3AABC /* UITableViewCell+Extension.swift in Sources */,
 				918F57C42796EED200FA5C5F /* MediaCollectionViewCell.swift in Sources */,
+				9152AEAB279BB46300F3AABC /* MiniPlayerViewModel.swift in Sources */,
 				918F57CC2797120500FA5C5F /* UICollectionViewCell+Extension.swift in Sources */,
+				9152AEAD279BB4A500F3AABC /* NotificationName+Extension.swift in Sources */,
 				9152AEA9279B97F800F3AABC /* UITableView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +518,7 @@
 				DEVELOPMENT_TEAM = 5RA2K927XU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleMusicPlayer/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "음악 재생 및 목록 조회를 위해 Media Library에 접근합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -531,6 +548,7 @@
 				DEVELOPMENT_TEAM = 5RA2K927XU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleMusicPlayer/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "음악 재생 및 목록 조회를 위해 Media Library에 접근합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

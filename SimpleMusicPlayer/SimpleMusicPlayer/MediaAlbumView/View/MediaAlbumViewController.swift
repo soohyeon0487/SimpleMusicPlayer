@@ -8,11 +8,12 @@
 import Combine
 import UIKit
 
+import MediaPlayer
 import SnapKit
 
 class MediaAlbumViewController: UIViewController {
-    typealias DataSource = UITableViewDiffableDataSource<Section, MediaTrack>
-    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, MediaTrack>
+    typealias DataSource = UITableViewDiffableDataSource<Section, MPMediaItem>
+    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, MPMediaItem>
 
     enum Section {
         case track
@@ -121,13 +122,13 @@ class MediaAlbumViewController: UIViewController {
 
         self.dataSource = DataSource(
             tableView: self.trackListTableView,
-            cellProvider: { tableView, indexPath, item -> TrackListTableViewCell? in
+            cellProvider: { tableView, indexPath, track -> TrackListTableViewCell? in
                 guard let cell: TrackListTableViewCell = tableView.dequeueReusableCell(
                     indexPath: indexPath
                 ) else {
                     return nil
                 }
-                cell.setTrack(item)
+                cell.setTrack(track)
                 return cell
             }
         )
