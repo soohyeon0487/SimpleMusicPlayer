@@ -60,6 +60,7 @@ class MediaAlbumViewController: UIViewController {
     private lazy var trackListTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.isScrollEnabled = false
+        tableView.delegate = self
         tableView.register(cellClass: TrackListTableViewCell.self)
         tableView.rowHeight = 50
         return tableView
@@ -160,6 +161,13 @@ class MediaAlbumViewController: UIViewController {
             self.dataSourceSnapshot,
             animatingDifferences: false
         )
+    }
+}
+
+extension MediaAlbumViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
