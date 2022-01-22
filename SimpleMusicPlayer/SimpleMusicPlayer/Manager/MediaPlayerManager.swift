@@ -23,20 +23,28 @@ class MediaPlayerManager {
 
     // MARK: Internal
     @Published var currentPlayTrack: MPMediaItem?
+    @Published var currentPlayBackRate: TimeInterval = 0
     @Published var isPlaying: MPMusicPlaybackState = .stopped
 
     // 음악 목록을 받으면 player Queue에 적용
     func setPlayList(_ queue: [MPMediaItem], shuffled: Bool) {
         self.player.setQueue(with: MPMediaItemCollection(items: queue))
         self.player.shuffleMode = shuffled ? .songs : .off
-        self.player.play()
+        self.player.repeatMode = .all
+        self.play()
     }
 
     func play() {
         guard self.player.nowPlayingItem != nil else {
             return
         }
-        self.player.play()
+        self.player.prepareToPlay { [weak self] error in
+            if let error = error as? MPError {
+                print(error)
+            } else {
+                self?.player.play()
+            }
+        }
     }
 
     func pause() {
@@ -45,6 +53,8 @@ class MediaPlayerManager {
 
     // MARK: Class Property
     private var cancelBag = Set<AnyCancellable>()
+    private var connectedTimer: Cancellable?
+    private var timer = Timer.publish(every: 1, on: .main, in: .common)
 
     private let player = MPMusicPlayerController.systemMusicPlayer
 
@@ -52,6 +62,7 @@ class MediaPlayerManager {
     private func syncMediaPlayer() {
         self.syncNowPlayingItem()
         self.syncPlayBackState()
+        self.syncTimerState()
     }
 
     private func syncNowPlayingItem() {
@@ -60,6 +71,27 @@ class MediaPlayerManager {
 
     private func syncPlayBackState() {
         self.isPlaying = self.player.playbackState
+    }
+
+    private func syncTimerState() {
+        if self.player.playbackState == .playing {
+            self.startTimer()
+        } else {
+            self.connectedTimer?.cancel()
+        }
+    }
+
+    private func startTimer() {
+        self.connectedTimer = Timer.publish(every: 1, on: .main, in: .default)
+            .autoconnect()
+            .sink { [weak self] _ in
+                guard let currentTime = self?.player.currentPlaybackTime,
+                      let total = self?.player.nowPlayingItem?.playbackDuration
+                else {
+                    return
+                }
+                self?.currentPlayBackRate = currentTime / total
+            }
     }
 
     private func bindEvent() {
@@ -99,6 +131,7 @@ class MediaPlayerManager {
         )
             .sink { [weak self] _ in
                 self?.syncPlayBackState()
+                self?.syncTimerState()
             }
             .store(in: &self.cancelBag)
     }

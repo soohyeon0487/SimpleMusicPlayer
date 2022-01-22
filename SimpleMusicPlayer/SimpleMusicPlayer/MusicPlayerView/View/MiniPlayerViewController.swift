@@ -32,7 +32,6 @@ class MiniPlayerViewController: UIViewController {
         let progressView = UIProgressView()
         progressView.backgroundColor = .gray.withAlphaComponent(0.5)
         progressView.tintColor = .init(named: ResourceKey.primaryTint.rawValue)
-        progressView.progress = 0.5
         progressView.progressViewStyle = .bar
         return progressView
     }()
@@ -47,14 +46,14 @@ class MiniPlayerViewController: UIViewController {
     private lazy var albumTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .preferredFont(forTextStyle: .title3)
+        label.font = .preferredFont(forTextStyle: .headline)
         label.lineBreakMode = .byTruncatingTail
         return label
     }()
     private lazy var albumArtistLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.font = .preferredFont(forTextStyle: .body)
+        label.font = .preferredFont(forTextStyle: .subheadline)
         label.lineBreakMode = .byTruncatingTail
         return label
     }()
@@ -156,6 +155,13 @@ class MiniPlayerViewController: UIViewController {
                     self.albumTitleLabel.text = ""
                     self.albumArtistLabel.text = ""
                 }
+            }
+            .store(in: &self.cancelBag)
+        self.viewModel.$currentPlayBackRate
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] timeInterval in
+                self?.playingProgressView.progress = Float(timeInterval)
             }
             .store(in: &self.cancelBag)
         self.viewModel.$isPlaying
