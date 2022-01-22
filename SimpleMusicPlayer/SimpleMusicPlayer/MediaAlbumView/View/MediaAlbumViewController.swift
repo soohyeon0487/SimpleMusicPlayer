@@ -58,7 +58,7 @@ class MediaAlbumViewController: UIViewController {
         return view
     }()
     private lazy var trackListTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.isScrollEnabled = false
         tableView.register(cellClass: TrackListTableViewCell.self)
         tableView.rowHeight = 50
@@ -137,8 +137,15 @@ class MediaAlbumViewController: UIViewController {
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] album in
-                self?.albumInfoView.setAlbum(album)
-                self?.applyTrackSnapShot(album: album)
+                guard let self = self else {
+                    return
+                }
+                self.albumInfoView.setAlbum(album)
+                self.applyTrackSnapShot(album: album)
+                let estimatedHeight = self.trackListTableView.rowHeight * CGFloat(album?.count ?? 0)
+                self.trackListTableView.snp.updateConstraints {
+                    $0.height.equalTo(estimatedHeight)
+                }
             }
             .store(in: &self.cancelBag)
     }
