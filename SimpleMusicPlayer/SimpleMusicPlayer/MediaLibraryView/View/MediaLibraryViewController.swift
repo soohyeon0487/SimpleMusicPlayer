@@ -100,12 +100,12 @@ class MediaLibraryViewController: UIViewController {
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] library in
-                self?.applyLibrarySnapShot(library: library)
+                self?.applyAlbumSnapShot(library: library)
             }
             .store(in: &self.cancelBag)
     }
 
-    private func applyLibrarySnapShot(library: MediaLibrary?) {
+    private func applyAlbumSnapShot(library: MediaLibrary?) {
         self.dataSourceSnapshot = DataSourceSnapshot()
         self.dataSourceSnapshot.appendSections([.album])
         if let library = library {

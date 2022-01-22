@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9152AEA3279B8E5600F3AABC /* MediaAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEA2279B8E5600F3AABC /* MediaAlbumViewModel.swift */; };
+		9152AEA5279B96EE00F3AABC /* TrackListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEA4279B96EE00F3AABC /* TrackListTableViewCell.swift */; };
+		9152AEA7279B97D700F3AABC /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEA6279B97D700F3AABC /* UITableViewCell+Extension.swift */; };
+		9152AEA9279B97F800F3AABC /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEA8279B97F800F3AABC /* UITableView+Extension.swift */; };
 		918F579D2796DEE100FA5C5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F579C2796DEE100FA5C5F /* AppDelegate.swift */; };
 		918F579F2796DEE100FA5C5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F579E2796DEE100FA5C5F /* SceneDelegate.swift */; };
 		918F57A12796DEE100FA5C5F /* MediaLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57A02796DEE100FA5C5F /* MediaLibraryViewController.swift */; };
@@ -34,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9152AEA2279B8E5600F3AABC /* MediaAlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAlbumViewModel.swift; sourceTree = "<group>"; };
+		9152AEA4279B96EE00F3AABC /* TrackListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTableViewCell.swift; sourceTree = "<group>"; };
+		9152AEA6279B97D700F3AABC /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		9152AEA8279B97F800F3AABC /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		918F57992796DEE100FA5C5F /* SimpleMusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleMusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		918F579C2796DEE100FA5C5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		918F579E2796DEE100FA5C5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +167,8 @@
 				91B51154279B0F2900235E07 /* Array+Extension.swift */,
 				918F57CB2797120500FA5C5F /* UICollectionViewCell+Extension.swift */,
 				918F57CD2797125300FA5C5F /* UICollectionView+Extension.swift */,
+				9152AEA6279B97D700F3AABC /* UITableViewCell+Extension.swift */,
+				9152AEA8279B97F800F3AABC /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +223,7 @@
 				91B51152279B0A9B00235E07 /* MediaAlbumViewController.swift */,
 				91B51156279B165E00235E07 /* MediaAlbumInfoView.swift */,
 				91B51158279B1D6A00235E07 /* MediaPlayButtonView.swift */,
+				9152AEA4279B96EE00F3AABC /* TrackListTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,6 +231,7 @@
 		91B51151279B0A7300235E07 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9152AEA2279B8E5600F3AABC /* MediaAlbumViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -330,6 +342,7 @@
 				91B51155279B0F2900235E07 /* Array+Extension.swift in Sources */,
 				918F57BB2796EA6100FA5C5F /* MediaLibraryViewModel.swift in Sources */,
 				91B51157279B165E00235E07 /* MediaAlbumInfoView.swift in Sources */,
+				9152AEA5279B96EE00F3AABC /* TrackListTableViewCell.swift in Sources */,
 				918F57BF2796EABB00FA5C5F /* AudioPlayerManager.swift in Sources */,
 				91B51153279B0A9B00235E07 /* MediaAlbumViewController.swift in Sources */,
 				918F57A12796DEE100FA5C5F /* MediaLibraryViewController.swift in Sources */,
@@ -340,9 +353,12 @@
 				918F579D2796DEE100FA5C5F /* AppDelegate.swift in Sources */,
 				918F579F2796DEE100FA5C5F /* SceneDelegate.swift in Sources */,
 				91B5114D279B01EE00235E07 /* HalfPresentationController.swift in Sources */,
+				9152AEA3279B8E5600F3AABC /* MediaAlbumViewModel.swift in Sources */,
 				918F57C92797040900FA5C5F /* MediaLibrary.swift in Sources */,
+				9152AEA7279B97D700F3AABC /* UITableViewCell+Extension.swift in Sources */,
 				918F57C42796EED200FA5C5F /* MediaCollectionViewCell.swift in Sources */,
 				918F57CC2797120500FA5C5F /* UICollectionViewCell+Extension.swift in Sources */,
+				9152AEA9279B97F800F3AABC /* UITableView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

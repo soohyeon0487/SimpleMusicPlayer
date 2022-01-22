@@ -11,9 +11,16 @@ import UIKit
 import SnapKit
 
 class MediaAlbumViewController: UIViewController {
+    typealias DataSource = UITableViewDiffableDataSource<Section, MediaTrack>
+    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, MediaTrack>
+
+    enum Section {
+        case track
+    }
+
     // MARK: Internal
     func setMediaAlbum(_ album: MediaAlbum) {
-        self.album = album
+        self.viewModel.mediaAlbum = album
     }
 
     // MARK: Life Cycle Function
@@ -25,13 +32,10 @@ class MediaAlbumViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.largeTitleDisplayMode = .never
-//        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     override func viewWillDisappear (_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: UI Property
@@ -55,17 +59,18 @@ class MediaAlbumViewController: UIViewController {
     }()
     private lazy var trackListTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.backgroundColor = .red.withAlphaComponent(0.3)
-        tableView.contentInset = .init(top: 8, left: 8, bottom: 8, right: 8)
+        tableView.isScrollEnabled = false
+        tableView.register(cellClass: TrackListTableViewCell.self)
+        tableView.rowHeight = 50
         return tableView
     }()
 
     // MARK: Class Property
-    @Published private var album: MediaAlbum?
-
-    // private let viewModel =
+    private let viewModel = MediaAlbumViewModel()
 
     private var cancelBag = Set<AnyCancellable>()
+    private var dataSource: DataSource?
+    private var dataSourceSnapshot = DataSourceSnapshot()
 
     // MARK: Class Method
     private func drawUI() {
@@ -109,31 +114,54 @@ class MediaAlbumViewController: UIViewController {
         self.trackListTableView.snp.makeConstraints {
             $0.top.equalTo(self.mediaPlayButtonView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(700)
+            $0.height.equalTo(400)
             $0.bottom.equalToSuperview()
         }
+
+        self.dataSource = DataSource(
+            tableView: self.trackListTableView,
+            cellProvider: { tableView, indexPath, item -> TrackListTableViewCell? in
+                guard let cell: TrackListTableViewCell = tableView.dequeueReusableCell(
+                    indexPath: indexPath
+                ) else {
+                    return nil
+                }
+                cell.setTrack(item)
+                return cell
+            }
+        )
     }
 
     private func bindUI() {
-        self.$album
+        self.viewModel.$mediaAlbum
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
-            .sink { album in
-                guard let album = album else {
-                    return
-                }
-                self.albumInfoView.setAlbum(album)
+            .sink { [weak self] album in
+                self?.albumInfoView.setAlbum(album)
+                self?.applyTrackSnapShot(album: album)
             }
             .store(in: &self.cancelBag)
+    }
+
+    private func applyTrackSnapShot(album: MediaAlbum?) {
+        self.dataSourceSnapshot = DataSourceSnapshot()
+        self.dataSourceSnapshot.appendSections([.track])
+        if let album = album {
+            self.dataSourceSnapshot.appendItems(album.tracks)
+        }
+        self.dataSource?.apply(
+            self.dataSourceSnapshot,
+            animatingDifferences: false
+        )
     }
 }
 
 extension MediaAlbumViewController: MediaPlayButtonDelegate {
     func playButtonTapped() {
-
+        self.viewModel.playButtonTapped()
     }
 
     func randomPlayButtonTapped() {
-        
+        self.viewModel.randomPlayButtonTapped()
     }
 }

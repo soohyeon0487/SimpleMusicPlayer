@@ -21,7 +21,10 @@ class MediaAlbumInfoView: UIView {
     }
 
     // MARK: Internal
-    func setAlbum(_ album: MediaAlbum) {
+    func setAlbum(_ album: MediaAlbum?) {
+        guard let album = album else {
+            return
+        }
         self.artworkImageView.image = album.artwork?.image(
             at: CGSize(width: self.bounds.width, height: self.bounds.width)
         )

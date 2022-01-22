@@ -13,14 +13,12 @@ struct MediaAlbum: Hashable {
         title: String,
         artwork: MPMediaItemArtwork?,
         artist: String,
-        releaseDate: Date,
-        tracks: [Int: MediaTrack] = [:]
+        releaseDate: Date
     ) {
         self.title = title
         self.artwork = artwork
         self.artist = artist
         self.releaseDate = releaseDate
-        self.tracks = tracks
     }
 
     static func == (lhs: MediaAlbum, rhs: MediaAlbum) -> Bool {
@@ -33,18 +31,18 @@ struct MediaAlbum: Hashable {
     let artist: String
     let releaseDate: Date
 
+    var tracks: [MediaTrack] {
+        return _tracks.sorted()
+    }
+
     var count: Int {
-        return tracks.values.count
+        return _tracks.count
     }
 
-    mutating func insert(_ title: String, at number: Int) {
-        tracks[number] = MediaTrack(title: title)
-    }
-
-    subscript(_ index: Int) -> MediaTrack? {
-        return tracks[index]
+    mutating func add(number: Int, title: String) {
+        _tracks.append(MediaTrack(number: number, title: title))
     }
 
     // MARK: Private
-    private var tracks: [Int: MediaTrack]
+    private var _tracks: [MediaTrack] = []
 }

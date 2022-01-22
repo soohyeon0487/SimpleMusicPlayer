@@ -40,6 +40,7 @@ class MediaPlayButtonView: UIView {
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.tag = PlayButtonType.play.rawValue
+        button.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
         return button
     }()
     private lazy var randomPlayButton: UIButton = {
@@ -50,6 +51,7 @@ class MediaPlayButtonView: UIView {
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.tag = PlayButtonType.randomPlay.rawValue
+        button.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
         return button
     }()
 
