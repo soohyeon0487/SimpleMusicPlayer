@@ -133,27 +133,22 @@ class MiniPlayerViewController: UIViewController {
     }
 
     private func bindUI() {
-        self.viewModel.$currentPlayTrack
+        self.viewModel.$nowPlayingItem
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] track in
-                guard let self = self else {
-                    return
-                }
-                if let track = track {
-                    self.emptyPlayerLabel.isHidden = true
-                    self.artworkImageView.image = track.artwork?.image(
-                        at: self.artworkImageView.bounds.size
+            .sink { [weak self] item in
+                self?.playingProgressView.progress = 0
+                self?.emptyPlayerLabel.isHidden = item != nil
+                self?.albumTitleLabel.text = item?.title
+                self?.albumArtistLabel.text = item?.artist
+                if let item = item {
+                    self?.artworkImageView.image = item.artwork?.image(
+                        at: self?.artworkImageView.bounds.size ?? .zero
                     )
-                    self.albumTitleLabel.text = track.title
-                    self.albumArtistLabel.text = track.artist
                 } else {
-                    self.emptyPlayerLabel.isHidden = false
-                    self.artworkImageView.image = UIImage(
+                    self?.artworkImageView.image = UIImage(
                         systemName: ResourceKey.musicNote.rawValue
                     )
-                    self.albumTitleLabel.text = ""
-                    self.albumArtistLabel.text = ""
                 }
             }
             .store(in: &self.cancelBag)
@@ -171,16 +166,12 @@ class MiniPlayerViewController: UIViewController {
                 switch state {
                 case .playing:
                     self?.playingButton.setImage(
-                        UIImage(
-                            systemName: ResourceKey.pause.rawValue
-                        ),
+                        UIImage(systemName: ResourceKey.pause.rawValue),
                         for: .normal
                     )
                 default:
                     self?.playingButton.setImage(
-                        UIImage(
-                            systemName: ResourceKey.play.rawValue
-                        ),
+                        UIImage(systemName: ResourceKey.play.rawValue),
                         for: .normal
                     )
                 }

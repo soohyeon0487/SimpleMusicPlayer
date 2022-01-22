@@ -22,7 +22,7 @@ class MediaPlayerManager {
     }
 
     // MARK: Internal
-    @Published var currentPlayTrack: MPMediaItem?
+    @Published var nowPlayingItem: MPMediaItem?
     @Published var currentPlayBackRate: TimeInterval = 0
     @Published var isPlaying: MPMusicPlaybackState = .stopped
 
@@ -66,7 +66,7 @@ class MediaPlayerManager {
     }
 
     private func syncNowPlayingItem() {
-        self.currentPlayTrack = self.player.nowPlayingItem
+        self.nowPlayingItem = self.player.nowPlayingItem
     }
 
     private func syncPlayBackState() {

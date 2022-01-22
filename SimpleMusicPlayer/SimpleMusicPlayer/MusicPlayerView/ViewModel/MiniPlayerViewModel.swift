@@ -16,7 +16,7 @@ class MiniPlayerViewModel {
     }
 
     // MARK: Output
-    @Published var currentPlayTrack: MPMediaItem?
+    @Published var nowPlayingItem: MPMediaItem?
     @Published var currentPlayBackRate: TimeInterval = 0
     @Published var isPlaying: MPMusicPlaybackState = .stopped
 
@@ -34,8 +34,8 @@ class MiniPlayerViewModel {
     private var cancelBag = Set<AnyCancellable>()
 
     private func bindEvent() {
-        self.playerManager.$currentPlayTrack
-            .assign(to: \.currentPlayTrack, on: self)
+        self.playerManager.$nowPlayingItem
+            .assign(to: \.nowPlayingItem, on: self)
             .store(in: &self.cancelBag)
         self.playerManager.$currentPlayBackRate
             .assign(to: \.currentPlayBackRate, on: self)
