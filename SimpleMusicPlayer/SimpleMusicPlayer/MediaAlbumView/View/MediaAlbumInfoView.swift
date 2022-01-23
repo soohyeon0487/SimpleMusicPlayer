@@ -69,7 +69,7 @@ class MediaAlbumInfoView: UIView {
         return label
     }()
 
-    // MARK: Class Method
+    // MARK: Private
     private func configure() {
         self.drawUI()
     }

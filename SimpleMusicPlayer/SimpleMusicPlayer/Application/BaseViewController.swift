@@ -45,10 +45,9 @@ class BaseViewController: UIViewController {
         return viewController
     }()
 
-    // MARK: Class Property
+    // MARK: Private
     private let playerViewModel = MediaPlayerViewModel()
 
-    // MARK: Class Method
     private func drawUI() {
         self.view.backgroundColor = .white
         self.addChild(miniPlayerVC)

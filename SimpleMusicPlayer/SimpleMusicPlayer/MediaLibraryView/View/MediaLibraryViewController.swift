@@ -18,6 +18,14 @@ class MediaLibraryViewController: UIViewController {
         case album
     }
 
+    // MARK: Life Cycle Function
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.drawUI()
+        self.bindUI()
+        self.viewModel.viewDidLoad()
+    }
+
     // MARK: UI Property
     private lazy var libraryCollectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -37,30 +45,13 @@ class MediaLibraryViewController: UIViewController {
         return collectionView
     }()
 
-    // MARK: Class Property
+    // MARK: Private
     private let viewModel = MediaLibraryViewModel()
 
     private var cancelBag = Set<AnyCancellable>()
     private var dataSource: DataSource?
     private var dataSourceSnapshot = DataSourceSnapshot()
 
-    // MARK: Life Cycle Function
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.drawUI()
-        self.bindUI()
-        self.viewModel.viewDidLoad()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    override func viewWillDisappear (_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-
-    // MARK: Class Method
     private func drawUI() {
         self.view.backgroundColor = .init(named: ResourceKey.primaryTint)
         self.extendedLayoutIncludesOpaqueBars = true

@@ -82,12 +82,11 @@ class MediaPlayerManager {
         self.shuffleMode = .init(rawValue: self.player.shuffleMode.rawValue) ?? .off
     }
 
-    // MARK: Class Property
-    private var cancelBag = Set<AnyCancellable>()
-
+    // MARK: Private
     private let player = MPMusicPlayerController.systemMusicPlayer
 
-    // MARK: Class Method
+    private var cancelBag = Set<AnyCancellable>()
+
     private func syncMediaPlayer() {
         self.syncNowPlayingItem()
         self.syncPlayBackState()

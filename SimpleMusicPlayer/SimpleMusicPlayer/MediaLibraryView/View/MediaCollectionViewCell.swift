@@ -29,6 +29,14 @@ class MediaCollectionViewCell: UICollectionViewCell {
         self.albumArtistLabel.text = album.artist
     }
 
+    // MARK: Life Cycle Function
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.artworkImageView.image = nil
+        self.albumTitleLabel.text = nil
+        self.albumArtistLabel.text = nil
+    }
+
     // MARK: UI Property
     private lazy var shadowBaseView: UIView = {
         let view = UIView()
@@ -57,15 +65,7 @@ class MediaCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    // MARK: Life Cycle Function
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.artworkImageView.image = nil
-        self.albumTitleLabel.text = nil
-        self.albumArtistLabel.text = nil
-    }
-
-    // MARK: Class Method
+    // MARK: Private
     private func configure() {
         self.drawUI()
     }

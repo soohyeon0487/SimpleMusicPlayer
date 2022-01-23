@@ -27,6 +27,13 @@ class TrackListTableViewCell: UITableViewCell {
         self.trackTitleLabel.text = track.title
     }
 
+    // MARK: Life Cycle Function
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.trackNumberLabel.text = nil
+        self.trackTitleLabel.text = nil
+    }
+
     // MARK: UI Property
     private lazy var trackNumberLabel: UILabel = {
         let label = UILabel()
@@ -48,14 +55,7 @@ class TrackListTableViewCell: UITableViewCell {
         return button
     }()
 
-    // MARK: Life Cycle Function
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.trackNumberLabel.text = nil
-        self.trackTitleLabel.text = nil
-    }
-
-    // MARK: Class Method
+    // MARK: Private
     private func configure() {
         self.drawUI()
     }

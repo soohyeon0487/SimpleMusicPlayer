@@ -9,11 +9,7 @@ import Combine
 import Foundation
 
 class MediaAlbumViewModel {
-    init() {
-        self.bindEvent()
-    }
-
-    // MARK: Output
+    // MARK: Internal
     @Published var mediaAlbum: MediaAlbum?
 
     func playButtonTapped() {
@@ -43,8 +39,4 @@ class MediaAlbumViewModel {
     // MARK: Private
     private let playerManager = MediaPlayerManager.shared
     private var cancelBag = Set<AnyCancellable>()
-
-    private func bindEvent() {
-
-    }
 }

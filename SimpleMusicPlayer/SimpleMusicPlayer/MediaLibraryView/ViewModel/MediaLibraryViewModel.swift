@@ -14,11 +14,10 @@ class MediaLibraryViewModel {
         self.addNotificationObserver()
     }
 
-    // MARK: Output
+    // MARK: Internal
     @Published var authorizationState: Bool?
     @Published var mediaLibrary: MediaLibrary?
 
-    // MARK: Internal
     func viewDidLoad() {
         self.requestAuthorization()
     }

@@ -24,6 +24,13 @@ class MainPlayerViewController: UIViewController {
         self.viewModel = viewModel
     }
 
+    // MARK: Life Cycle Function
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.drawUI()
+        self.bindUI()
+    }
+
     // MARK: UI Property
     private lazy var shadowBaseView: UIView = {
         let view = UIView()
@@ -154,18 +161,10 @@ class MainPlayerViewController: UIViewController {
         return view
     }()
 
-    // MARK: Class Property
+    // MARK: Private
     private var viewModel: MediaPlayerViewModel?
     private var cancelBag = Set<AnyCancellable>()
 
-    // MARK: Life Cycle Function
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.drawUI()
-        self.bindUI()
-    }
-
-    // MARK: Class Method
     private func drawUI() {
         self.view.backgroundColor = .white
         self.view.layer.masksToBounds = true

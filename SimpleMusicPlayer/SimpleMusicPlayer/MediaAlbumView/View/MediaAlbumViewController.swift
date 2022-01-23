@@ -69,14 +69,13 @@ class MediaAlbumViewController: UIViewController {
         return tableView
     }()
 
-    // MARK: Class Property
+    // MARK: Private
     private let viewModel = MediaAlbumViewModel()
 
     private var cancelBag = Set<AnyCancellable>()
     private var dataSource: DataSource?
     private var dataSourceSnapshot = DataSourceSnapshot()
 
-    // MARK: Class Method
     private func drawUI() {
         self.view.backgroundColor = .white
         self.drawBaseScrollView()

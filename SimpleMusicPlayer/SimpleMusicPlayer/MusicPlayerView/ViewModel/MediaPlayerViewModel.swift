@@ -17,7 +17,7 @@ class MediaPlayerViewModel {
         self.addNotificationObserver()
     }
 
-    // MARK: Output
+    // MARK: Internal
     @Published var nowPlayingItem: MPMediaItem?
     @Published var currentPlaybackTime: TimeInterval = 0
     @Published var extraPlaybackTime: TimeInterval = 0
@@ -26,7 +26,6 @@ class MediaPlayerViewModel {
     @Published var repeatMode: RepeatMode = .none
     @Published var shuffleMode: ShuffleMode = .off
 
-    // MARK: Internal
     func repeatModeButtonTapped() {
         self.playerManager.nextRepeatMode()
     }
@@ -52,13 +51,13 @@ class MediaPlayerViewModel {
     }
 
     // MARK: Private
+    @Published private var playbackDuration: TimeInterval = 0
+
     private let playerManager = MediaPlayerManager.shared
 
     private var cancelBag = Set<AnyCancellable>()
     private var connectedTimer: Cancellable?
     private var timer = Timer.publish(every: 1, tolerance: 0.2, on: .main, in: .common)
-
-    @Published private var playbackDuration: TimeInterval = 0
 
     private func assignValues() {
         self.playerManager.$nowPlayingItem

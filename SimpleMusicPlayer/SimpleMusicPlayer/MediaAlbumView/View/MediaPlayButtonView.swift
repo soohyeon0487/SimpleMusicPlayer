@@ -29,6 +29,7 @@ class MediaPlayButtonView: UIView {
         self.configure()
     }
 
+    // MARK: Internal
     weak var delegate: MediaPlayButtonDelegate?
 
     // MARK: UI Property
@@ -55,7 +56,7 @@ class MediaPlayButtonView: UIView {
         return button
     }()
 
-    // MARK: Class Method
+    // MARK: Private
     private func configure() {
         self.drawUI()
     }
