@@ -63,6 +63,8 @@ class MediaLibraryViewController: UIViewController {
     // MARK: Class Method
     private func drawUI() {
         self.view.backgroundColor = .init(named: "color.primaryTint")
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.edgesForExtendedLayout = .top
         self.drawNavigationBar()
         self.drawCollectionView()
     }
@@ -75,7 +77,7 @@ class MediaLibraryViewController: UIViewController {
     private func drawCollectionView() {
         self.view.addSubview(self.libraryCollectionView)
         self.libraryCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.view.snp.topMargin)
+            $0.top.equalToSuperview()
             $0.leading.trailing.bottom.equalToSuperview()
         }
 
