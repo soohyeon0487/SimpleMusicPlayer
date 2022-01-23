@@ -160,13 +160,10 @@ class MiniPlayerViewController: UIViewController {
                 }
             }
             .store(in: &self.cancelBag)
-        viewModel.$currentPlaybackTime
-            .combineLatest(viewModel.$playbackDuration)
-            .filter { $0 < $1 }
+        viewModel.$playbackProgress
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] current, total in
-                print(current, total)
-                self?.playingProgressView.setProgress(Float(current / total), animated: true)
+            .sink { [weak self] progress in
+                self?.playingProgressView.setProgress(progress, animated: true)
             }
             .store(in: &self.cancelBag)
         viewModel.$isPlaying

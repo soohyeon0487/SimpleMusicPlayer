@@ -73,7 +73,7 @@ class MainPlayerViewController: UIViewController {
         label.font = .preferredFont(forTextStyle: .caption1)
         return label
     }()
-    private lazy var playbackDurationLabel: UILabel = {
+    private lazy var extraPlaybackTimeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
         label.textAlignment = .right
@@ -195,8 +195,8 @@ class MainPlayerViewController: UIViewController {
             $0.top.equalTo(self.playingProgressView.snp.bottom).offset(8)
             $0.leading.equalTo(self.playingProgressView)
         }
-        self.view.addSubview(self.playbackDurationLabel)
-        self.playbackDurationLabel.snp.makeConstraints {
+        self.view.addSubview(self.extraPlaybackTimeLabel)
+        self.extraPlaybackTimeLabel.snp.makeConstraints {
             $0.top.equalTo(self.playingProgressView.snp.bottom).offset(8)
             $0.trailing.equalTo(self.playingProgressView)
         }
@@ -250,12 +250,21 @@ class MainPlayerViewController: UIViewController {
             }
             .store(in: &self.cancelBag)
         viewModel.$currentPlaybackTime
-            .combineLatest(viewModel.$playbackDuration)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] current, total in
-                self?.currentPlayBackTimeLabel.text = "\(current.toTimeString())"
-                self?.playbackDurationLabel.text = "-\((total-current).toTimeString())"
-                self?.playingProgressView.setProgress(Float(current / total), animated: true) 
+            .sink { [weak self] current in
+                self?.currentPlayBackTimeLabel.text = current.toTimeString()
+            }
+            .store(in: &self.cancelBag)
+        viewModel.$extraPlaybackTime
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] extra in
+                self?.extraPlaybackTimeLabel.text = "-" + extra.toTimeString()
+            }
+            .store(in: &self.cancelBag)
+        viewModel.$playbackProgress
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] progress in
+                self?.playingProgressView.setProgress(progress, animated: true)
             }
             .store(in: &self.cancelBag)
         viewModel.$isPlaying
