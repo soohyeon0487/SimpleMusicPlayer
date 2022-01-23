@@ -12,7 +12,7 @@
 ## 사용 라이브러리
 - Combine (Binding)
 - MediaPlayer (재생)
-- StortKit (권한)
+- StoretKit (권한)
 - SnapKit by SPM
 - SwiftLint by script (installed using homebrew)
 
