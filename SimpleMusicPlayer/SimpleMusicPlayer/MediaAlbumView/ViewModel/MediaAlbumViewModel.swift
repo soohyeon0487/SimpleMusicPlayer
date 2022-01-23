@@ -30,6 +30,16 @@ class MediaAlbumViewModel {
         self.playerManager.setPlayList(album.tracks, shuffled: true)
     }
 
+    func cellTapped(row: Int) {
+        guard let album = self.mediaAlbum else {
+            return
+        }
+        self.playerManager.setPlayList(
+            Array(album.tracks[(row..<album.count)]),
+            shuffled: false
+        )
+    }
+
     // MARK: Private
     private let playerManager = MediaPlayerManager.shared
     private var cancelBag = Set<AnyCancellable>()

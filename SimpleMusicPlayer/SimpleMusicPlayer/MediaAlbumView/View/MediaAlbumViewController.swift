@@ -169,7 +169,7 @@ class MediaAlbumViewController: UIViewController {
 
 extension MediaAlbumViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        self.viewModel.cellTapped(row: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
