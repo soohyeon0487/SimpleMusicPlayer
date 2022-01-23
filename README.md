@@ -6,6 +6,7 @@
 - [x] MVVM 구조와 함께 Combine 적극적으로 사용해보기
 - [x] CustomView 적극적으로 사용해보기
 - [x] SwiftLint 기본 설정으로 warning, error 하나도 남기지 않기
+- [x] 상수값, RawString을 최대한 Enum을 활용하여 줄이기
 - [x] Git issue에 문제와 고민 기록하며 진행하기
 
 ## 사용 라이브러리
