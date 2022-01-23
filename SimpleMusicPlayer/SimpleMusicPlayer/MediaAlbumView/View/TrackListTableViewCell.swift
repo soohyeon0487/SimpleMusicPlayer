@@ -5,9 +5,9 @@
 //  Created by Soohyeon Lee on 2022/01/22.
 //
 
+import MediaPlayer
 import UIKit
 
-import MediaPlayer
 import SnapKit
 
 class TrackListTableViewCell: UITableViewCell {

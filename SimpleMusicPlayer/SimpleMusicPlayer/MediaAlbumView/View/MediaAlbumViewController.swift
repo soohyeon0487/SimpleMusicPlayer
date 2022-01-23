@@ -6,9 +6,9 @@
 //
 
 import Combine
+import MediaPlayer
 import UIKit
 
-import MediaPlayer
 import SnapKit
 
 class MediaAlbumViewController: UIViewController {

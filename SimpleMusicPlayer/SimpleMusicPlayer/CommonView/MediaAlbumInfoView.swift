@@ -5,10 +5,10 @@
 //  Created by Soohyeon Lee on 2022/01/22.
 //
 
+import MediaPlayer
 import UIKit
 
 import SnapKit
-import MediaPlayer
 
 class MediaAlbumInfoView: UIView {
     override init(frame: CGRect) {

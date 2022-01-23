@@ -6,8 +6,8 @@
 //
 
 import Combine
-import UIKit
 import MediaPlayer
+import UIKit
 
 import SnapKit
 

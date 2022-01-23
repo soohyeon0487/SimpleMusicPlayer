@@ -5,10 +5,10 @@
 //  Created by Soohyeon Lee on 2022/01/23.
 //
 
+import MediaPlayer
 import UIKit
 
 import SnapKit
-import MediaPlayer
 
 protocol MediaControlButtonDelegate: AnyObject {
     func mediaControlButtonTapped(type: MediaControlType)
