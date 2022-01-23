@@ -103,6 +103,15 @@ class MediaLibraryViewController: UIViewController {
                 self?.applyAlbumSnapShot(library: library)
             }
             .store(in: &self.cancelBag)
+        self.viewModel.$authorizationState
+            .replaceNil(with: true)
+            .removeDuplicates()
+            .filter { !$0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                self?.showAuthorizationAlert()
+            }
+            .store(in: &self.cancelBag)
     }
 
     private func applyAlbumSnapShot(library: MediaLibrary?) {
@@ -115,6 +124,17 @@ class MediaLibraryViewController: UIViewController {
             self.dataSourceSnapshot,
             animatingDifferences: false
         )
+    }
+
+    private func showAuthorizationAlert() {
+        let alert = UIAlertController(
+            title: "필수 권한 사용 불가",
+            message: "설정에서 미디어 및 Apple Music 접근 권한을 확인해주세요.",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
     }
 }
 

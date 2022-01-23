@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
+        NotificationCenter.default.post(name: .checkAuthorization, object: nil)
         NotificationCenter.default.post(name: .syncSystemPlayerMode, object: nil)
     }
 }
