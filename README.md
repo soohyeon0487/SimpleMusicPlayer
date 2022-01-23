@@ -6,6 +6,7 @@
 - [x] MVVM 구조와 함께 Combine 적극적으로 사용해보기
 - [x] CustomView 적극적으로 사용해보기
 - [x] SwiftLint 기본 설정으로 warning, error 하나도 남기지 않기
+- [x] Git issue에 문제와 고민 기록하며 진행하기
 
 ## 사용 라이브러리
 - Combine (Binding)
@@ -33,14 +34,21 @@
 
 ## 스크린샷 및 영상
 
-|  |  |  | 
-| :------------: | :------------: | :------------: |
-|  <img width=300 src=>  | <img width=300 src=> | <img width=300 src=> |
+| 권한 요청 | 권한 요청 거부 |
+| :------------: | :------------: | 
+|  <img width=500 src=https://user-images.githubusercontent.com/68768628/150685957-6ff18636-cfd2-447d-b0f7-d22f75447777.PNG>  | <img width=500 src=https://user-images.githubusercontent.com/68768628/150685956-2c29da7f-6d1c-4d88-b275-280fd8ac4524.PNG> |
 
-|  |  |  | 
-| :------------: | :------------: | :------------: |
-|  <img width=300 src=>  | <img width=300 src=> | <img width=300 src=> |
+| 라이브러리 / MiniPlayer (재생 중) | Main Player (재생 중) | 
+| :------------: | :------------: | 
+|  <img width=500 src=https://user-images.githubusercontent.com/68768628/150686138-a1328c6b-5cf8-4d57-b9eb-cc784c80594f.jpeg>  | <img width=500 src=https://user-images.githubusercontent.com/68768628/150685937-906ed4d9-85fe-4e4c-9052-f4bc9c0e2736.PNG> |
 
-|  |  |  | 
-| :------------: | :------------: | :------------: |
-|  <img width=300 src=>  | <img width=300 src=> | <img width=300 src=> |
+| 앨범 화면 | 곡 상세 정보 탭 |
+| :------------: | :------------: | 
+|  <img width=500 src=https://user-images.githubusercontent.com/68768628/150685950-b91e2dbe-ca78-4aec-b811-f1307a8aeb37.PNG>  | <img width=500 src=https://user-images.githubusercontent.com/68768628/150685946-8fe65a42-b852-420e-87fd-34e2dbe01cca.PNG> |
+
+
+
+
+https://user-images.githubusercontent.com/68768628/150686192-3282f98f-99b8-49fd-8eb7-b22497c813c7.MP4
+
+
