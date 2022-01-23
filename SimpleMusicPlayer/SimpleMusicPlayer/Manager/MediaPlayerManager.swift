@@ -23,38 +23,53 @@ class MediaPlayerManager {
 
     // MARK: Internal
     @Published var nowPlayingItem: MPMediaItem?
-    @Published var currentPlayBackRate: TimeInterval = 0
+    @Published var currentPlaybackTime: TimeInterval = 0
+    @Published var playbackDuration: TimeInterval = 0
     @Published var isPlaying: MPMusicPlaybackState = .stopped
+    @Published var repeatMode: RepeatMode = .none
+    @Published var shuffleMode: ShuffleMode = .off
 
     // 음악 목록을 받으면 player Queue에 적용
     func setPlayList(_ queue: [MPMediaItem], shuffled: Bool) {
         self.player.setQueue(with: MPMediaItemCollection(items: queue))
-        self.player.shuffleMode = shuffled ? .songs : .off
-        self.player.repeatMode = .all
+        self.applyShuffleMode(mode: shuffled ? .songs : .off)
         self.play()
+    }
+
+    func nextRepeatMode() {
+        self.applyRepeatMode(mode: self.repeatMode.getNextMode() ?? .none)
+    }
+
+    func backward() {
+        self.player.skipToPreviousItem()
     }
 
     func play() {
         guard self.player.nowPlayingItem != nil else {
             return
         }
-        self.player.prepareToPlay { [weak self] error in
-            if let error = error as? MPError {
-                print(error)
-            } else {
-                self?.player.play()
-            }
-        }
+        self.player.prepareToPlay()
+        self.player.play()
     }
 
     func pause() {
         self.player.pause()
     }
 
+    func forward() {
+        self.player.skipToNextItem()
+    }
+
+    func nextShuffleMode() {
+        self.applyShuffleMode(mode: self.shuffleMode.getNextMode() ?? .off)
+    }
+
     // MARK: Class Property
     private var cancelBag = Set<AnyCancellable>()
     private var connectedTimer: Cancellable?
-    private var timer = Timer.publish(every: 1, on: .main, in: .common)
+
+    // TODO: Timer ViewModel로 옮기기
+    private var timer = Timer.publish(every: 1, tolerance: 0.2, on: .main, in: .common)
 
     private let player = MPMusicPlayerController.systemMusicPlayer
 
@@ -81,27 +96,33 @@ class MediaPlayerManager {
         }
     }
 
+    private func applyRepeatMode(mode: RepeatMode) {
+        self.player.repeatMode = .init(rawValue: mode.rawValue) ?? .none
+        self.repeatMode = mode
+    }
+
+    private func applyShuffleMode(mode: ShuffleMode) {
+        self.player.shuffleMode = .init(rawValue: mode.rawValue) ?? .off
+        self.shuffleMode = mode
+    }
+
     private func startTimer() {
-        self.connectedTimer = Timer.publish(every: 1, on: .main, in: .default)
+        self.connectedTimer = Timer.publish(every: 1, tolerance: 0.2, on: .main, in: .default)
             .autoconnect()
             .sink { [weak self] _ in
-                guard let currentTime = self?.player.currentPlaybackTime,
-                      let total = self?.player.nowPlayingItem?.playbackDuration
+                guard let currentPlaybackTime = self?.player.currentPlaybackTime,
+                      let playbackDuration = self?.player.nowPlayingItem?.playbackDuration
                 else {
                     return
                 }
-                self?.currentPlayBackRate = currentTime / total
+                self?.currentPlaybackTime = currentPlaybackTime
+                self?.playbackDuration = playbackDuration
             }
     }
 
     private func bindEvent() {
-        self.bindInAppEvent()
         self.bindInAppNotification()
         self.bindSystemNotification()
-    }
-
-    private func bindInAppEvent() {
-
     }
 
     private func bindInAppNotification() {

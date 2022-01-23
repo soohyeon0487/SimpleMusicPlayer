@@ -13,7 +13,9 @@
 		9152AEA9279B97F800F3AABC /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEA8279B97F800F3AABC /* UITableView+Extension.swift */; };
 		9152AEAB279BB46300F3AABC /* MediaPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEAA279BB46300F3AABC /* MediaPlayerViewModel.swift */; };
 		9152AEAD279BB4A500F3AABC /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEAC279BB4A500F3AABC /* NotificationName+Extension.swift */; };
-		9152AEB0279BD33D00F3AABC /* ResourceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEAF279BD33D00F3AABC /* ResourceKey.swift */; };
+		9152AEB0279BD33D00F3AABC /* ResourceKey+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152AEAF279BD33D00F3AABC /* ResourceKey+Enum.swift */; };
+		9177D66E279C444A00B5C759 /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9177D66D279C444A00B5C759 /* TimeInterval+Extension.swift */; };
+		9177D670279C557600B5C759 /* MediaPlayer+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9177D66F279C557600B5C759 /* MediaPlayer+Enum.swift */; };
 		918F579D2796DEE100FA5C5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F579C2796DEE100FA5C5F /* AppDelegate.swift */; };
 		918F579F2796DEE100FA5C5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F579E2796DEE100FA5C5F /* SceneDelegate.swift */; };
 		918F57A12796DEE100FA5C5F /* MediaLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918F57A02796DEE100FA5C5F /* MediaLibraryViewController.swift */; };
@@ -46,7 +48,9 @@
 		9152AEA8279B97F800F3AABC /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		9152AEAA279BB46300F3AABC /* MediaPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewModel.swift; sourceTree = "<group>"; };
 		9152AEAC279BB4A500F3AABC /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
-		9152AEAF279BD33D00F3AABC /* ResourceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceKey.swift; sourceTree = "<group>"; };
+		9152AEAF279BD33D00F3AABC /* ResourceKey+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResourceKey+Enum.swift"; sourceTree = "<group>"; };
+		9177D66D279C444A00B5C759 /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
+		9177D66F279C557600B5C759 /* MediaPlayer+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MediaPlayer+Enum.swift"; sourceTree = "<group>"; };
 		918F57992796DEE100FA5C5F /* SimpleMusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleMusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		918F579C2796DEE100FA5C5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		918F579E2796DEE100FA5C5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,7 +92,8 @@
 		9152AEAE279BD32D00F3AABC /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				9152AEAF279BD33D00F3AABC /* ResourceKey.swift */,
+				9152AEAF279BD33D00F3AABC /* ResourceKey+Enum.swift */,
+				9177D66F279C557600B5C759 /* MediaPlayer+Enum.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				918F57CD2797125300FA5C5F /* UICollectionView+Extension.swift */,
 				9152AEA6279B97D700F3AABC /* UITableViewCell+Extension.swift */,
 				9152AEA8279B97F800F3AABC /* UITableView+Extension.swift */,
+				9177D66D279C444A00B5C759 /* TimeInterval+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -364,9 +370,10 @@
 				918F57C22796EE5B00FA5C5F /* MediaAlbum.swift in Sources */,
 				918F57BD2796EAA300FA5C5F /* MediaFetchManager.swift in Sources */,
 				918F579D2796DEE100FA5C5F /* AppDelegate.swift in Sources */,
-				9152AEB0279BD33D00F3AABC /* ResourceKey.swift in Sources */,
+				9152AEB0279BD33D00F3AABC /* ResourceKey+Enum.swift in Sources */,
 				918F579F2796DEE100FA5C5F /* SceneDelegate.swift in Sources */,
 				91B5114D279B01EE00235E07 /* HalfPresentationController.swift in Sources */,
+				9177D670279C557600B5C759 /* MediaPlayer+Enum.swift in Sources */,
 				9152AEA3279B8E5600F3AABC /* MediaAlbumViewModel.swift in Sources */,
 				918F57C92797040900FA5C5F /* MediaLibrary.swift in Sources */,
 				9152AEA7279B97D700F3AABC /* UITableViewCell+Extension.swift in Sources */,
@@ -375,6 +382,7 @@
 				918F57CC2797120500FA5C5F /* UICollectionViewCell+Extension.swift in Sources */,
 				9152AEAD279BB4A500F3AABC /* NotificationName+Extension.swift in Sources */,
 				9152AEA9279B97F800F3AABC /* UITableView+Extension.swift in Sources */,
+				9177D66E279C444A00B5C759 /* TimeInterval+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

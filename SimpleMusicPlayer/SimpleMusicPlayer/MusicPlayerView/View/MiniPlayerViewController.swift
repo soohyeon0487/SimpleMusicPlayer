@@ -137,11 +137,15 @@ class MiniPlayerViewController: UIViewController {
     }
 
     private func bindUI() {
-        self.viewModel.$nowPlayingItem
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.$nowPlayingItem
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] item in
                 self?.playingProgressView.progress = 0
+                self?.baseView.isUserInteractionEnabled = item != nil
                 self?.emptyPlayerLabel.isHidden = item != nil
                 self?.albumTitleLabel.text = item?.title
                 self?.albumArtistLabel.text = item?.artist
@@ -156,14 +160,16 @@ class MiniPlayerViewController: UIViewController {
                 }
             }
             .store(in: &self.cancelBag)
-        self.viewModel.$currentPlayBackRate
-            .removeDuplicates()
+        viewModel.$currentPlaybackTime
+            .combineLatest(viewModel.$playbackDuration)
+            .filter { $0 < $1 }
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] timeInterval in
-                self?.playingProgressView.progress = Float(timeInterval)
+            .sink { [weak self] current, total in
+                print(current, total)
+                self?.playingProgressView.setProgress(Float(current / total), animated: true)
             }
             .store(in: &self.cancelBag)
-        self.viewModel.$isPlaying
+        viewModel.$isPlaying
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
@@ -185,7 +191,7 @@ class MiniPlayerViewController: UIViewController {
 
     @objc
     private func playingButtonTapped(_ sender: UITapGestureRecognizer) {
-        self.viewModel.playingButtonTapped()
+        self.viewModel?.playingButtonTapped()
     }
 
     @objc

@@ -8,13 +8,19 @@
 import UIKit
 
 class HalfPresentationController: UIPresentationController {
+    enum PresentingValue: CGFloat {
+        case ratio = 1.5
+        case backgroundMinAlpha = 0.0
+        case backgroundMaxAlpha = 0.5
+    }
     override var frameOfPresentedViewInContainerView: CGRect {
         let bounds = UIScreen.main.bounds
+        let targetHeight = bounds.width * PresentingValue.ratio.rawValue
         return CGRect(
             x: 0,
-            y: bounds.height / 2,
+            y: bounds.height - targetHeight,
             width: bounds.width,
-            height: bounds.height / 2
+            height: targetHeight
         )
     }
 
@@ -25,7 +31,7 @@ class HalfPresentationController: UIPresentationController {
         }
         self.presentingViewController.transitionCoordinator?.animate(
             alongsideTransition: { _ in
-                self.modalBackgroundView.alpha = 0.5
+                self.modalBackgroundView.alpha = PresentingValue.backgroundMaxAlpha.rawValue
             },
             completion: nil)
     }
@@ -33,7 +39,7 @@ class HalfPresentationController: UIPresentationController {
     override func dismissalTransitionWillBegin() {
         self.presentedViewController.transitionCoordinator?.animate(
             alongsideTransition: { _ in
-                self.modalBackgroundView.alpha = 0
+                self.modalBackgroundView.alpha = PresentingValue.backgroundMinAlpha.rawValue
             },
             completion: { _ in
                 self.modalBackgroundView.removeFromSuperview()
@@ -44,7 +50,7 @@ class HalfPresentationController: UIPresentationController {
     private lazy var modalBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
-        view.alpha = 0
+        view.alpha = PresentingValue.backgroundMaxAlpha.rawValue
         view.addGestureRecognizer(
             UITapGestureRecognizer(
                 target: self,
