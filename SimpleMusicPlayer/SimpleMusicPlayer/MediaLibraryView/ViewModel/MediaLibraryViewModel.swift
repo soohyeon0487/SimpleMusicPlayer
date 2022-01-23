@@ -11,6 +11,7 @@ import Foundation
 class MediaLibraryViewModel {
     init() {
         self.bindEvent()
+        self.addNotificationObserver()
     }
 
     // MARK: Output
@@ -19,11 +20,7 @@ class MediaLibraryViewModel {
 
     // MARK: Internal
     func viewDidLoad() {
-        self.mediaPlayerManager.requestAuthorization()
-            .sink { [weak self] state in
-                self?.authorizationState = state
-            }
-            .store(in: &cancelBag)
+        self.requestAuthorization()
     }
 
     // MARK: Private
@@ -36,6 +33,23 @@ class MediaLibraryViewModel {
             .filter { $0 == true }
             .sink { [weak self] _ in
                 self?.fetchMediaQueryItems()
+            }
+            .store(in: &cancelBag)
+    }
+
+    private func addNotificationObserver() {
+        // 앱이 foreground로 돌아왔을 경우, 권한 재확인 및 Library 목록 갱신
+        NotificationCenter.default.publisher(for: .checkAuthorization, object: nil)
+            .sink { [weak self] _ in
+                self?.requestAuthorization()
+            }
+            .store(in: &self.cancelBag)
+    }
+
+    private func requestAuthorization() {
+        self.mediaPlayerManager.requestAuthorization()
+            .sink { [weak self] state in
+                self?.authorizationState = state
             }
             .store(in: &cancelBag)
     }

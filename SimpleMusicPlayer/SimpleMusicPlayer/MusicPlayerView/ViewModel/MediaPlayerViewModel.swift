@@ -12,7 +12,9 @@ import MediaPlayer
 
 class MediaPlayerViewModel {
     init() {
+        self.assignValues()
         self.bindEvent()
+        self.addNotificationObserver()
     }
 
     // MARK: Output
@@ -58,22 +60,7 @@ class MediaPlayerViewModel {
 
     @Published private var playbackDuration: TimeInterval = 0
 
-    private func bindEvent() {
-        self.bindEventFromMediaPlayManager()
-        self.bindEventFromNotification()
-
-        self.$isPlaying
-            .sink { [weak self] state in
-                if state == .playing {
-                    self?.restartTimer()
-                } else {
-                    self?.connectedTimer?.cancel()
-                }
-            }
-            .store(in: &self.cancelBag)
-    }
-
-    private func bindEventFromMediaPlayManager() {
+    private func assignValues() {
         self.playerManager.$nowPlayingItem
             .removeDuplicates()
             .assign(to: \.nowPlayingItem, on: self)
@@ -103,16 +90,19 @@ class MediaPlayerViewModel {
             .store(in: &self.cancelBag)
     }
 
-    private func bindEventFromNotification() {
-        // 앱이 다시 Foreground에 돌아 왔을 때 권한 점검
-//        NotificationCenter.default.publisher(
-//            for: .checkAuthorization,
-//               object: nil
-//        )
-//            .sink { [weak self] _ in
-//
-//            }
-//            .store(in: &self.cancelBag)
+    private func bindEvent() {
+        self.$isPlaying
+            .sink { [weak self] state in
+                if state == .playing {
+                    self?.restartTimer()
+                } else {
+                    self?.connectedTimer?.cancel()
+                }
+            }
+            .store(in: &self.cancelBag)
+    }
+
+    private func addNotificationObserver() {
         // 앱이 다시 Foreground에 돌아 왔을 때 Player 동기화
         NotificationCenter.default.publisher(
             for: .syncSystemPlayerMode,
