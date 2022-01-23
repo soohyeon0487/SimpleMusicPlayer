@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
+        // Background에서 Foreground로 전환 시, 권한 및 AppleMusic PlayMode 동기화
         NotificationCenter.default.post(name: .checkAuthorization, object: nil)
         NotificationCenter.default.post(name: .syncSystemPlayerMode, object: nil)
     }
