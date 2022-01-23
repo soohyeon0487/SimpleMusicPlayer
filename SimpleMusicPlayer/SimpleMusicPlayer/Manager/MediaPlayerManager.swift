@@ -18,13 +18,10 @@ class MediaPlayerManager {
     static let shared = MediaPlayerManager()
     private init() {
         self.syncMediaPlayer()
-        self.bindEvent()
     }
 
     // MARK: Internal
     @Published var nowPlayingItem: MPMediaItem?
-    @Published var currentPlaybackTime: TimeInterval = 0
-    @Published var playbackDuration: TimeInterval = 0
     @Published var isPlaying: MPMusicPlaybackState = .stopped
     @Published var repeatMode: RepeatMode = .none
     @Published var shuffleMode: ShuffleMode = .off
@@ -34,6 +31,14 @@ class MediaPlayerManager {
         self.player.setQueue(with: MPMediaItemCollection(items: queue))
         self.applyShuffleMode(mode: shuffled ? .songs : .off)
         self.play()
+    }
+
+    func getCurrentPlaybackTime() -> TimeInterval {
+        return self.player.currentPlaybackTime
+    }
+
+    func getPlaybackDuration() -> TimeInterval {
+        return self.player.nowPlayingItem?.playbackDuration ?? 0
     }
 
     func nextRepeatMode() {
@@ -64,12 +69,21 @@ class MediaPlayerManager {
         self.applyShuffleMode(mode: self.shuffleMode.getNextMode() ?? .off)
     }
 
+    func syncNowPlayingItem() {
+        self.nowPlayingItem = self.player.nowPlayingItem
+    }
+
+    func syncPlayBackState() {
+        self.isPlaying = self.player.playbackState
+    }
+
+    func syncPlayerMode() {
+        self.repeatMode = .init(rawValue: self.player.repeatMode.rawValue) ?? .none
+        self.shuffleMode = .init(rawValue: self.player.shuffleMode.rawValue) ?? .off
+    }
+
     // MARK: Class Property
     private var cancelBag = Set<AnyCancellable>()
-    private var connectedTimer: Cancellable?
-
-    // TODO: Timer ViewModel로 옮기기
-    private var timer = Timer.publish(every: 1, tolerance: 0.2, on: .main, in: .common)
 
     private let player = MPMusicPlayerController.systemMusicPlayer
 
@@ -77,23 +91,7 @@ class MediaPlayerManager {
     private func syncMediaPlayer() {
         self.syncNowPlayingItem()
         self.syncPlayBackState()
-        self.syncTimerState()
-    }
-
-    private func syncNowPlayingItem() {
-        self.nowPlayingItem = self.player.nowPlayingItem
-    }
-
-    private func syncPlayBackState() {
-        self.isPlaying = self.player.playbackState
-    }
-
-    private func syncTimerState() {
-        if self.player.playbackState == .playing {
-            self.startTimer()
-        } else {
-            self.connectedTimer?.cancel()
-        }
+        self.syncPlayerMode()
     }
 
     private func applyRepeatMode(mode: RepeatMode) {
@@ -104,56 +102,5 @@ class MediaPlayerManager {
     private func applyShuffleMode(mode: ShuffleMode) {
         self.player.shuffleMode = .init(rawValue: mode.rawValue) ?? .off
         self.shuffleMode = mode
-    }
-
-    private func startTimer() {
-        self.connectedTimer = Timer.publish(every: 1, tolerance: 0.2, on: .main, in: .default)
-            .autoconnect()
-            .sink { [weak self] _ in
-                guard let currentPlaybackTime = self?.player.currentPlaybackTime,
-                      let playbackDuration = self?.player.nowPlayingItem?.playbackDuration
-                else {
-                    return
-                }
-                self?.currentPlaybackTime = currentPlaybackTime
-                self?.playbackDuration = playbackDuration
-            }
-    }
-
-    private func bindEvent() {
-        self.bindInAppNotification()
-        self.bindSystemNotification()
-    }
-
-    private func bindInAppNotification() {
-        NotificationCenter.default.publisher(
-            for: .MPMusicPlayerControllerNowPlayingItemDidChange,
-               object: nil
-        )
-            .sink { [weak self] _ in
-                self?.syncMediaPlayer()
-            }
-            .store(in: &self.cancelBag)
-    }
-
-    private func bindSystemNotification() {
-//        NotificationCenter.default.publisher(
-//            for: .volumeChanged,
-//               object: nil
-//        )
-//            .sink { value in
-//                print(value.userInfo)
-//            }
-//            .store(in: &self.cancelBag)
-        // MPPlayer의 재생 상태가 바뀌면 반영
-        NotificationCenter.default.publisher(
-            for: .MPMusicPlayerControllerPlaybackStateDidChange,
-               object: nil
-        )
-            .sink { [weak self] _ in
-                self?.syncPlayBackState()
-                self?.syncTimerState()
-            }
-            .store(in: &self.cancelBag)
     }
 }

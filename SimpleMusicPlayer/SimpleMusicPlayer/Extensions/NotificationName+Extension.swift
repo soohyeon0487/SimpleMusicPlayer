@@ -8,9 +8,8 @@
 import Foundation
 
 extension Notification.Name {
-    static let setPlayList = Notification.Name("Media.SetPlayList")
-    static let mediaPlay = Notification.Name("Media.Play")
-    static let mediaPause = Notification.Name("Media.Pause")
+    static let checkAuthorization = Notification.Name("Media.CheckAuthorization")
+    static let syncSystemPlayerMode = Notification.Name("Media.SyncSystemPlayer")
     static let volumeChanged = NSNotification.Name(
         rawValue: "AVSystemController_SystemVolumeDidChangeNotification"
     )

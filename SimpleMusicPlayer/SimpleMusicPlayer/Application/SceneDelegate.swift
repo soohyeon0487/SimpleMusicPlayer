@@ -23,4 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
     }
+
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        NotificationCenter.default.post(name: .syncSystemPlayerMode, object: nil)
+    }
 }
