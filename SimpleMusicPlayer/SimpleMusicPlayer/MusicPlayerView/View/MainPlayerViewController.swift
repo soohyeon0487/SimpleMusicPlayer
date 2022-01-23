@@ -7,9 +7,9 @@
 
 import Combine
 import UIKit
+import MediaPlayer
 
 import SnapKit
-import CoreMedia
 
 class MainPlayerViewController: UIViewController {
     enum MediaControlType: Int {
@@ -144,6 +144,12 @@ class MainPlayerViewController: UIViewController {
         )
         return button
     }()
+    private lazy var volumeView: MPVolumeView = {
+        let view = MPVolumeView()
+        view.tintColor = .init(named: ResourceKey.primaryTint.rawValue)
+        view.setValue(false, forKey: "showsRouteButton")
+        return view
+    }()
 
     // MARK: Class Property
     private var viewModel: MediaPlayerViewModel?
@@ -225,6 +231,12 @@ class MainPlayerViewController: UIViewController {
         self.mediaControlStackView.addArrangedSubview(self.shuffleModeButton)
         self.shuffleModeButton.snp.makeConstraints {
             $0.width.height.equalTo(40)
+        }
+        self.view.addSubview(self.volumeView)
+        self.volumeView.snp.makeConstraints {
+            $0.top.equalTo(self.mediaControlStackView.snp.bottom).offset(32)
+            $0.leading.trailing.equalToSuperview().inset(32)
+            $0.bottom.equalTo(self.view.snp.bottomMargin)
         }
     }
 
