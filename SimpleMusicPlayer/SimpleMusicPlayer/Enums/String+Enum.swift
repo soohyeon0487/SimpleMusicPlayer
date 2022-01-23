@@ -15,4 +15,6 @@ enum RawString {
     static let okay = "확인"
     static let cancel = "취소"
     static let emptyPlayList = "현재 재생 중인 노래가 없습니다"
+    static let trackInfoManyPlayTitle = "%d번이나 들으셨군요!"
+    static let trackInfoZeroPlayTitle = "아직 한 번도 안 들어보셨군요!"
 }

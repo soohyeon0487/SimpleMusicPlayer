@@ -10,6 +10,10 @@ import UIKit
 
 import SnapKit
 
+protocol TrackListTableViewCellDelegate: AnyObject {
+    func accessoryButtonTapped(playCount: Int)
+}
+
 class TrackListTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,9 +26,14 @@ class TrackListTableViewCell: UITableViewCell {
     }
 
     // MARK: Internal
-    func setTrack(_ track: MPMediaItem) {
-        self.trackNumberLabel.text = "\(track.albumTrackNumber)"
-        self.trackTitleLabel.text = track.title
+    weak var delegate: TrackListTableViewCellDelegate?
+    
+    var track: MPMediaItem? {
+        didSet {
+            if let track = track {
+                self.setTrack(track)
+            }
+        }
     }
 
     // MARK: Life Cycle Function
@@ -50,14 +59,20 @@ class TrackListTableViewCell: UITableViewCell {
         return label
     }()
     private lazy var trackInfoButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 40, height: 40)))
         button.setImage(UIImage(systemName: ResourceKey.ellipsis), for: .normal)
+        button.addTarget(
+            self,
+            action: #selector(self.accessoryButtonTapped(_:)),
+            for: .touchUpInside
+        )
         return button
     }()
 
     // MARK: Private
     private func configure() {
         self.drawUI()
+        self.accessoryView = self.trackInfoButton
     }
 
     private func drawUI() {
@@ -67,17 +82,21 @@ class TrackListTableViewCell: UITableViewCell {
             $0.centerY.leading.equalToSuperview()
             $0.width.equalToSuperview().multipliedBy(0.1)
         }
-        self.addSubview(self.trackInfoButton)
-        self.trackInfoButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.width.equalToSuperview().multipliedBy(0.1)
-        }
         self.addSubview(self.trackTitleLabel)
         self.trackTitleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(self.trackNumberLabel.snp.trailing).offset(16)
-            $0.trailing.equalTo(self.trackInfoButton.snp.leading).offset(16)
+            $0.trailing.equalToSuperview().offset(-48)
         }
+    }
+
+    private func setTrack(_ track: MPMediaItem) {
+        self.trackNumberLabel.text = "\(track.albumTrackNumber)"
+        self.trackTitleLabel.text = track.title
+    }
+
+    @objc
+    private func accessoryButtonTapped(_ sender: UIButton) {
+        self.delegate?.accessoryButtonTapped(playCount: track?.playCount ?? 0)
     }
 }

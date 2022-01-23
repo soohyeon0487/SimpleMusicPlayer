@@ -127,12 +127,13 @@ class MediaAlbumViewController: UIViewController {
                 ) else {
                     return nil
                 }
-                cell.setTrack(track)
+                cell.track = track
+                cell.delegate = self
                 return cell
             }
         )
     }
-
+    
     private func bindUI() {
         self.viewModel.$mediaAlbum
             .removeDuplicates()
@@ -162,6 +163,20 @@ class MediaAlbumViewController: UIViewController {
             animatingDifferences: false
         )
     }
+
+    private func showSelectedTrackInfo(playCount: Int) {
+        let title = playCount != 0 ?
+        String.init(format: RawString.trackInfoManyPlayTitle, playCount)
+        : RawString.trackInfoZeroPlayTitle
+        let alert = UIAlertController(
+            title: title,
+            message: nil,
+            preferredStyle: .alert
+        )
+        let okayAction = UIAlertAction(title: RawString.okay, style: .default)
+        alert.addAction(okayAction)
+        self.present(alert, animated: true)
+    }
 }
 
 extension MediaAlbumViewController: UITableViewDelegate {
@@ -178,5 +193,11 @@ extension MediaAlbumViewController: MediaPlayButtonDelegate {
 
     func randomPlayButtonTapped() {
         self.viewModel.randomPlayButtonTapped()
+    }
+}
+
+extension MediaAlbumViewController: TrackListTableViewCellDelegate {
+    func accessoryButtonTapped(playCount: Int) {
+        self.showSelectedTrackInfo(playCount: playCount)
     }
 }
