@@ -34,9 +34,9 @@ class MediaPlayButtonView: UIView {
     // MARK: UI Property
     private lazy var playButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        button.tintColor = .init(named: "color.primaryTint")
-        button.backgroundColor = .init(named: "color.primaryTint")?.withAlphaComponent(0.3)
+        button.setImage(UIImage(systemName: ResourceKey.play), for: .normal)
+        button.tintColor = .init(named: ResourceKey.primaryTint)
+        button.backgroundColor = .init(named: ResourceKey.primaryTint)?.withAlphaComponent(0.3)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.tag = PlayButtonType.play.rawValue
@@ -45,9 +45,9 @@ class MediaPlayButtonView: UIView {
     }()
     private lazy var randomPlayButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "shuffle"), for: .normal)
-        button.tintColor = .init(named: "color.primaryTint")
-        button.backgroundColor = .init(named: "color.primaryTint")?.withAlphaComponent(0.3)
+        button.setImage(UIImage(systemName: ResourceKey.shuffleMode), for: .normal)
+        button.tintColor = .init(named: ResourceKey.primaryTint)
+        button.backgroundColor = .init(named: ResourceKey.primaryTint)?.withAlphaComponent(0.3)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.tag = PlayButtonType.randomPlay.rawValue

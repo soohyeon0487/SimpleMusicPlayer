@@ -32,9 +32,9 @@ class MediaLibrary: Equatable {
             self._albums[track.albumPersistentID] = album
         } else {
             var newAlbum = MediaAlbum(
-                title: track.albumTitle ?? "unknown",
+                title: track.albumTitle ?? RawString.unknown,
                 artwork: track.artwork,
-                artist: track.artist ?? "unknown",
+                artist: track.artist ?? RawString.unknown,
                 releaseDate: track.releaseDate ?? Date()
             )
             newAlbum.add(track)

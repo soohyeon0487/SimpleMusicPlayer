@@ -44,7 +44,7 @@ class TrackListTableViewCell: UITableViewCell {
     }()
     private lazy var trackInfoButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.setImage(UIImage(systemName: ResourceKey.ellipsis), for: .normal)
         return button
     }()
 

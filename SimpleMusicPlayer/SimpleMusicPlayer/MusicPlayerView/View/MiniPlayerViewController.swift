@@ -69,7 +69,7 @@ class MiniPlayerViewController: UIViewController {
     }()
     private lazy var emptyPlayerLabel: UILabel = {
         let label = UILabel()
-        label.text = "현재 재생 중인 노래가 없습니다"
+        label.text = RawString.emptyPlayList
         label.textColor = .black
         label.font = .preferredFont(forTextStyle: .headline)
         label.textAlignment = .center

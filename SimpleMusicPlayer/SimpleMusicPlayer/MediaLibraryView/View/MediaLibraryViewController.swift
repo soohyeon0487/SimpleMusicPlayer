@@ -62,7 +62,7 @@ class MediaLibraryViewController: UIViewController {
 
     // MARK: Class Method
     private func drawUI() {
-        self.view.backgroundColor = .init(named: "color.primaryTint")
+        self.view.backgroundColor = .init(named: ResourceKey.primaryTint)
         self.extendedLayoutIncludesOpaqueBars = true
         self.edgesForExtendedLayout = .top
         self.drawNavigationBar()
@@ -70,7 +70,7 @@ class MediaLibraryViewController: UIViewController {
     }
 
     private func drawNavigationBar() {
-        self.navigationController?.navigationBar.topItem?.title = "라이브러리"
+        self.navigationController?.navigationBar.topItem?.title = RawString.libraryTitle
         self.navigationController?.navigationBar.isTranslucent = false
     }
 
@@ -128,12 +128,12 @@ class MediaLibraryViewController: UIViewController {
 
     private func showAuthorizationAlert() {
         let alert = UIAlertController(
-            title: "필수 권한 사용 불가",
-            message: "설정에서 미디어 및 Apple Music 접근 권한을 확인해주세요.",
+            title: RawString.authorizationTitle,
+            message: RawString.authorizationMessage,
             preferredStyle: .alert
         )
-        let okAction = UIAlertAction(title: "확인", style: .default)
-        alert.addAction(okAction)
+        let okayAction = UIAlertAction(title: RawString.okay, style: .default)
+        alert.addAction(okayAction)
         self.present(alert, animated: true)
     }
 }
