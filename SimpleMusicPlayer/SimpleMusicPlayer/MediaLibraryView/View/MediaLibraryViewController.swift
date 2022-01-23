@@ -108,7 +108,7 @@ class MediaLibraryViewController: UIViewController {
             .removeDuplicates()
             .filter { !$0 }
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] state in
+            .sink { [weak self] _ in
                 self?.showAuthorizationAlert()
             }
             .store(in: &self.cancelBag)
