@@ -35,7 +35,7 @@ class MiniPlayerViewController: UIViewController {
     private lazy var playingProgressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.backgroundColor = .gray.withAlphaComponent(0.5)
-        progressView.tintColor = .init(named: ResourceKey.primaryTint.rawValue)
+        progressView.tintColor = .init(named: ResourceKey.primaryTint)
         progressView.progressViewStyle = .bar
         return progressView
     }()
@@ -63,7 +63,7 @@ class MiniPlayerViewController: UIViewController {
     }()
     private lazy var playingButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: ResourceKey.play.rawValue), for: .normal)
+        button.setImage(UIImage(systemName: ResourceKey.play), for: .normal)
         button.addTarget(self, action: #selector(self.playingButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
@@ -155,7 +155,7 @@ class MiniPlayerViewController: UIViewController {
                     )
                 } else {
                     self?.artworkImageView.image = UIImage(
-                        systemName: ResourceKey.musicNote.rawValue
+                        systemName: ResourceKey.musicNote
                     )
                 }
             }
@@ -173,12 +173,12 @@ class MiniPlayerViewController: UIViewController {
                 switch state {
                 case .playing:
                     self?.playingButton.setImage(
-                        UIImage(systemName: ResourceKey.pause.rawValue),
+                        UIImage(systemName: ResourceKey.pause),
                         for: .normal
                     )
                 default:
                     self?.playingButton.setImage(
-                        UIImage(systemName: ResourceKey.play.rawValue),
+                        UIImage(systemName: ResourceKey.play),
                         for: .normal
                     )
                 }

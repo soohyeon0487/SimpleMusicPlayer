@@ -7,16 +7,16 @@
 
 import Foundation
 
-enum ResourceKey: String {
+enum ResourceKey {
     // Image
-    case play = "play.fill"
-    case pause = "pause.fill"
-    case repeatDefault = "repeat"
-    case repeatOnlyOne = "repeat.1"
-    case shuffleMode = "shuffle"
-    case backward = "backward.fill"
-    case forward = "forward.fill"
-    case musicNote = "music.note"
+    static let play = "play.fill"
+    static let pause = "pause.fill"
+    static let repeatDefault = "repeat"
+    static let repeatOnlyOne = "repeat.1"
+    static let shuffleMode = "shuffle"
+    static let backward = "backward.fill"
+    static let forward = "forward.fill"
+    static let musicNote = "music.note"
     // Color
-    case primaryTint = "color.primaryTint"
+    static let primaryTint = "color.primaryTint"
 }

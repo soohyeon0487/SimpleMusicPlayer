@@ -11,6 +11,9 @@ import MediaPlayer
 
 import SnapKit
 
+
+// TODO: 스와이프 다운으로 창 닫기
+
 class MainPlayerViewController: UIViewController {
     enum MediaControlType: Int {
         case repeatMode = 1, backward, playing, forward, shuffleMode
@@ -61,7 +64,7 @@ class MainPlayerViewController: UIViewController {
     private lazy var playingProgressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.backgroundColor = .gray.withAlphaComponent(0.5)
-        progressView.tintColor = .init(named: ResourceKey.primaryTint.rawValue)
+        progressView.tintColor = .init(named: ResourceKey.primaryTint)
         progressView.progressViewStyle = .bar
         return progressView
     }()
@@ -99,8 +102,8 @@ class MainPlayerViewController: UIViewController {
     }()
     private lazy var backwardButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: ResourceKey.backward.rawValue), for: .normal)
-        button.tintColor = .init(named: ResourceKey.primaryTint.rawValue)
+        button.setImage(UIImage(systemName: ResourceKey.backward), for: .normal)
+        button.tintColor = .init(named: ResourceKey.primaryTint)
         button.tag = MediaControlType.backward.rawValue
         button.addTarget(
             self,
@@ -111,8 +114,8 @@ class MainPlayerViewController: UIViewController {
     }()
     private lazy var playingButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: ResourceKey.play.rawValue), for: .normal)
-        button.tintColor = .init(named: ResourceKey.primaryTint.rawValue)
+        button.setImage(UIImage(systemName: ResourceKey.play), for: .normal)
+        button.tintColor = .init(named: ResourceKey.primaryTint)
         button.tag = MediaControlType.playing.rawValue
         button.addTarget(
             self,
@@ -123,8 +126,8 @@ class MainPlayerViewController: UIViewController {
     }()
     private lazy var forwardButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: ResourceKey.forward.rawValue), for: .normal)
-        button.tintColor = .init(named: ResourceKey.primaryTint.rawValue)
+        button.setImage(UIImage(systemName: ResourceKey.forward), for: .normal)
+        button.tintColor = .init(named: ResourceKey.primaryTint)
         button.tag = MediaControlType.forward.rawValue
         button.addTarget(
             self,
@@ -135,7 +138,7 @@ class MainPlayerViewController: UIViewController {
     }()
     private lazy var shuffleModeButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: ResourceKey.shuffleMode.rawValue), for: .normal)
+        button.setImage(UIImage(systemName: ResourceKey.shuffleMode), for: .normal)
         button.tag = MediaControlType.shuffleMode.rawValue
         button.addTarget(
             self,
@@ -146,7 +149,7 @@ class MainPlayerViewController: UIViewController {
     }()
     private lazy var volumeView: MPVolumeView = {
         let view = MPVolumeView()
-        view.tintColor = .init(named: ResourceKey.primaryTint.rawValue)
+        view.tintColor = .init(named: ResourceKey.primaryTint)
         view.setValue(false, forKey: "showsRouteButton")
         return view
     }()
@@ -256,7 +259,7 @@ class MainPlayerViewController: UIViewController {
                     )
                 } else {
                     self?.artworkImageView.image = UIImage(
-                        systemName: ResourceKey.musicNote.rawValue
+                        systemName: ResourceKey.musicNote
                     )
                 }
             }
@@ -285,12 +288,12 @@ class MainPlayerViewController: UIViewController {
                 switch state {
                 case .playing:
                     self?.playingButton.setImage(
-                        UIImage(systemName: ResourceKey.pause.rawValue),
+                        UIImage(systemName: ResourceKey.pause),
                         for: .normal
                     )
                 default:
                     self?.playingButton.setImage(
-                        UIImage(systemName: ResourceKey.play.rawValue),
+                        UIImage(systemName: ResourceKey.play),
                         for: .normal
                     )
                 }
@@ -302,27 +305,27 @@ class MainPlayerViewController: UIViewController {
                 switch mode {
                 case .none:
                     self?.repeatModeButton.setImage(
-                        UIImage(systemName: ResourceKey.repeatDefault.rawValue),
+                        UIImage(systemName: ResourceKey.repeatDefault),
                         for: .normal
                     )
                     self?.repeatModeButton.tintColor = .init(
-                        named: ResourceKey.primaryTint.rawValue
+                        named: ResourceKey.primaryTint
                     )?.withAlphaComponent(0.3)
                 case .one:
                     self?.repeatModeButton.setImage(
-                        UIImage(systemName: ResourceKey.repeatOnlyOne.rawValue),
+                        UIImage(systemName: ResourceKey.repeatOnlyOne),
                         for: .normal
                     )
                     self?.repeatModeButton.tintColor = .init(
-                        named: ResourceKey.primaryTint.rawValue
+                        named: ResourceKey.primaryTint
                     )
                 case .all:
                     self?.repeatModeButton.setImage(
-                        UIImage(systemName: ResourceKey.repeatDefault.rawValue),
+                        UIImage(systemName: ResourceKey.repeatDefault),
                         for: .normal
                     )
                     self?.repeatModeButton.tintColor = .init(
-                        named: ResourceKey.primaryTint.rawValue
+                        named: ResourceKey.primaryTint
                     )
                 }
             }
@@ -333,11 +336,11 @@ class MainPlayerViewController: UIViewController {
                 switch mode {
                 case .off:
                     self?.shuffleModeButton.tintColor = .init(
-                        named: ResourceKey.primaryTint.rawValue
+                        named: ResourceKey.primaryTint
                     )?.withAlphaComponent(0.3)
                 case .songs:
                     self?.shuffleModeButton.tintColor = .init(
-                        named: ResourceKey.primaryTint.rawValue
+                        named: ResourceKey.primaryTint
                     )
                 }
             }
