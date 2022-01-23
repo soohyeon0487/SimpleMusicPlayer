@@ -33,10 +33,12 @@ class MediaAlbumViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationItem.largeTitleDisplayMode = .never
     }
 
     override func viewWillDisappear (_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.navigationItem.largeTitleDisplayMode = .always
     }
 
     // MARK: UI Property

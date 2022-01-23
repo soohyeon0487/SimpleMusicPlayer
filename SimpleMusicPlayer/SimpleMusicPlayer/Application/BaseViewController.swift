@@ -19,7 +19,6 @@ class BaseViewController: UIViewController {
             rootViewController: MediaLibraryViewController()
         )
         navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.navigationItem.largeTitleDisplayMode = .always
         return navigationController
     }()
     private lazy var miniPlayerVC: UIViewController = {
