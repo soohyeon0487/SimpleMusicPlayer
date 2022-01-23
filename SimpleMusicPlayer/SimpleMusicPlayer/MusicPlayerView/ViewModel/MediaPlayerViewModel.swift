@@ -76,6 +76,7 @@ class MediaPlayerViewModel {
             .store(in: &self.cancelBag)
         self.$currentPlaybackTime
             .combineLatest(self.$playbackDuration)
+            .filter { $1 != 0 }
             .filter { $0 < $1 }
             .map { ($0, $1) }
             .assign(to: \.playbackTimeSet, on: self)
@@ -102,6 +103,7 @@ class MediaPlayerViewModel {
         )
             .sink { [weak self] _ in
                 self?.playerManager.syncPlayerMode()
+                self?.updatePlaybackTimeSet()
             }
             .store(in: &self.cancelBag)
         // Player의 재생 item이 바뀌면 반영
@@ -112,6 +114,7 @@ class MediaPlayerViewModel {
             .sink { [weak self] _ in
                 self?.playerManager.syncNowPlayingItem()
                 self?.playerManager.syncPlayBackState()
+                self?.resetPlaybackTimeSet()
             }
             .store(in: &self.cancelBag)
         // Player의 재생 상태가 바뀌면 반영
@@ -129,13 +132,17 @@ class MediaPlayerViewModel {
         self.connectedTimer = Timer.publish(every: 1, tolerance: 0.2, on: .main, in: .default)
             .autoconnect()
             .sink { [weak self] _ in
-                guard let currentPlaybackTime = self?.playerManager.getCurrentPlaybackTime(),
-                      let playbackDuration = self?.playerManager.getPlaybackDuration()
-                else {
-                    return
-                }
-                self?.currentPlaybackTime = currentPlaybackTime
-                self?.playbackDuration = playbackDuration
+                self?.updatePlaybackTimeSet()
             }
+    }
+
+    private func resetPlaybackTimeSet() {
+        self.currentPlaybackTime = 0
+        self.playbackDuration = 0
+    }
+
+    private func updatePlaybackTimeSet() {
+        self.currentPlaybackTime = self.playerManager.getCurrentPlaybackTime()
+        self.playbackDuration = self.playerManager.getPlaybackDuration()
     }
 }
