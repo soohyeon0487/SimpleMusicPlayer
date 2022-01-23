@@ -264,7 +264,7 @@ class MainPlayerViewController: UIViewController {
         viewModel.$playbackProgress
             .receive(on: DispatchQueue.main)
             .sink { [weak self] progress in
-                self?.playingProgressView.setProgress(progress, animated: true)
+                self?.playingProgressView.progress = progress
             }
             .store(in: &self.cancelBag)
         viewModel.$isPlaying
