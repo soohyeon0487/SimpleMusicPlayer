@@ -39,13 +39,7 @@ class MiniPlayerViewController: UIViewController {
         )
         return view
     }()
-    private lazy var playingProgressView: UIProgressView = {
-        let progressView = UIProgressView()
-        progressView.backgroundColor = .gray.withAlphaComponent(0.5)
-        progressView.tintColor = .init(named: ResourceKey.primaryTint)
-        progressView.progressViewStyle = .bar
-        return progressView
-    }()
+    private lazy var timeProgressView = MediaPlaybackTimeProgressView(type: .onlyBar)
     private lazy var artworkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray.withAlphaComponent(0.3)
@@ -96,21 +90,21 @@ class MiniPlayerViewController: UIViewController {
             $0.height.equalTo(80)
         }
 
-        self.baseView.addSubview(self.playingProgressView)
-        self.playingProgressView.snp.makeConstraints {
+        self.baseView.addSubview(self.timeProgressView)
+        self.timeProgressView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(4)
+            $0.height.equalTo(3)
         }
         self.baseView.addSubview(self.artworkImageView)
         self.artworkImageView.snp.makeConstraints {
-            $0.top.equalTo(self.playingProgressView.snp.bottom).offset(8)
+            $0.top.equalTo(self.timeProgressView.snp.bottom).offset(8)
             $0.bottom.equalToSuperview().offset(-8)
             $0.leading.equalToSuperview().offset(16)
             $0.width.equalTo(self.artworkImageView.snp.height)
         }
         self.baseView.addSubview(self.playingButton)
         self.playingButton.snp.makeConstraints {
-            $0.top.equalTo(self.playingProgressView.snp.bottom).offset(8)
+            $0.top.equalTo(self.timeProgressView.snp.bottom).offset(8)
             $0.bottom.equalToSuperview().offset(-8)
             $0.trailing.equalToSuperview().offset(-16)
             $0.width.equalTo(self.playingButton.snp.height).multipliedBy(0.8)
@@ -143,7 +137,7 @@ class MiniPlayerViewController: UIViewController {
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] item in
-                self?.playingProgressView.progress = 0
+                self?.timeProgressView.progress = 0
                 self?.baseView.isUserInteractionEnabled = item != nil
                 self?.emptyPlayerLabel.isHidden = item != nil
                 self?.albumTitleLabel.text = item?.title
@@ -159,10 +153,10 @@ class MiniPlayerViewController: UIViewController {
                 }
             }
             .store(in: &self.cancelBag)
-        viewModel.$playbackProgress
+        viewModel.$playbackTimeSet
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] progress in
-                self?.playingProgressView.progress = progress
+            .sink { [weak self] timeSet in
+                self?.timeProgressView.setTimeProgressView(timeSet)
             }
             .store(in: &self.cancelBag)
         viewModel.$isPlaying

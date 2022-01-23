@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import MediaPlayer
 
 class MediaAlbumInfoView: UIView {
     override init(frame: CGRect) {
@@ -30,6 +31,17 @@ class MediaAlbumInfoView: UIView {
         )
         self.albumTitleLabel.text = album.title
         self.albumArtistLabel.text = album.artist
+    }
+
+    func setAlbum(_ track: MPMediaItem?) {
+        guard let track = track else {
+            return
+        }
+        self.artworkImageView.image = track.artwork?.image(
+            at: CGSize(width: self.bounds.width, height: self.bounds.width)
+        )
+        self.albumTitleLabel.text = track.title
+        self.albumArtistLabel.text = track.artist
     }
 
     // MARK: UI Property

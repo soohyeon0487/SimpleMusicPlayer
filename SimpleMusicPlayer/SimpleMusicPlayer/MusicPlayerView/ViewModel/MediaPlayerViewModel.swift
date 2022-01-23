@@ -19,9 +19,9 @@ class MediaPlayerViewModel {
 
     // MARK: Internal
     @Published var nowPlayingItem: MPMediaItem?
+    @Published var playbackTimeSet: (current: TimeInterval, total: TimeInterval) = (0, 0)
     @Published var currentPlaybackTime: TimeInterval = 0
-    @Published var extraPlaybackTime: TimeInterval = 0
-    @Published var playbackProgress: Float = 0
+    @Published var playbackDuration: TimeInterval = 0
     @Published var isPlaying: MPMusicPlaybackState = .stopped
     @Published var repeatMode: RepeatMode = .none
     @Published var shuffleMode: ShuffleMode = .off
@@ -51,7 +51,6 @@ class MediaPlayerViewModel {
     }
 
     // MARK: Private
-    @Published private var playbackDuration: TimeInterval = 0
 
     private let playerManager = MediaPlayerManager.shared
 
@@ -76,16 +75,11 @@ class MediaPlayerViewModel {
             .removeDuplicates()
             .assign(to: \.shuffleMode, on: self)
             .store(in: &self.cancelBag)
-        let playbackValues =  self.$currentPlaybackTime
+        self.$currentPlaybackTime
             .combineLatest(self.$playbackDuration)
             .filter { $0 < $1 }
-        playbackValues
-            .map { Float($0 / $1) }
-            .assign(to: \.self.playbackProgress, on: self)
-            .store(in: &self.cancelBag)
-        playbackValues
-            .map { $1 - $0 }
-            .assign(to: \.self.extraPlaybackTime, on: self)
+            .map { ($0, $1) }
+            .assign(to: \.playbackTimeSet, on: self)
             .store(in: &self.cancelBag)
     }
 

@@ -9,14 +9,14 @@ import UIKit
 
 class HalfPresentationController: UIPresentationController {
     enum PresentingProps: CGFloat {
-        case ratio = 1.5
+        case viewRatio = 1.6
         case backgroundMinAlpha = 0.0
         case backgroundMaxAlpha = 0.5
     }
 
     override var frameOfPresentedViewInContainerView: CGRect {
         let bounds = UIScreen.main.bounds
-        let targetHeight = bounds.width * PresentingProps.ratio.rawValue
+        let targetHeight = bounds.width * PresentingProps.viewRatio.rawValue
         return CGRect(
             x: 0,
             y: bounds.height - targetHeight,
