@@ -34,6 +34,7 @@
 		91AE971A279D66A500484B4B /* String+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE9719279D66A500484B4B /* String+Enum.swift */; };
 		91AE971D279D725600484B4B /* MediaPlaybackTimeProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE971C279D725600484B4B /* MediaPlaybackTimeProgressView.swift */; };
 		91AE971F279D848900484B4B /* MediaControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE971E279D848900484B4B /* MediaControlButtonView.swift */; };
+		91AE9721279D90F600484B4B /* ModalSymbolTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE9720279D90F600484B4B /* ModalSymbolTopView.swift */; };
 		91B51147279AFE9F00235E07 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B51146279AFE9F00235E07 /* BaseViewController.swift */; };
 		91B51149279AFF5500235E07 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B51148279AFF5500235E07 /* MiniPlayerViewController.swift */; };
 		91B5114B279AFF8800235E07 /* MainPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B5114A279AFF8800235E07 /* MainPlayerViewController.swift */; };
@@ -73,6 +74,7 @@
 		91AE9719279D66A500484B4B /* String+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Enum.swift"; sourceTree = "<group>"; };
 		91AE971C279D725600484B4B /* MediaPlaybackTimeProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlaybackTimeProgressView.swift; sourceTree = "<group>"; };
 		91AE971E279D848900484B4B /* MediaControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaControlButtonView.swift; sourceTree = "<group>"; };
+		91AE9720279D90F600484B4B /* ModalSymbolTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSymbolTopView.swift; sourceTree = "<group>"; };
 		91B51146279AFE9F00235E07 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		91B51148279AFF5500235E07 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		91B5114A279AFF8800235E07 /* MainPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			children = (
 				91B51148279AFF5500235E07 /* MiniPlayerViewController.swift */,
 				91B5114A279AFF8800235E07 /* MainPlayerViewController.swift */,
+				91AE9720279D90F600484B4B /* ModalSymbolTopView.swift */,
 				91AE971E279D848900484B4B /* MediaControlButtonView.swift */,
 				91B5114C279B01EE00235E07 /* HalfPresentationController.swift */,
 			);
@@ -376,6 +379,7 @@
 				918F57CE2797125300FA5C5F /* UICollectionView+Extension.swift in Sources */,
 				91B51159279B1D6A00235E07 /* MediaPlayButtonView.swift in Sources */,
 				91B5114B279AFF8800235E07 /* MainPlayerViewController.swift in Sources */,
+				91AE9721279D90F600484B4B /* ModalSymbolTopView.swift in Sources */,
 				91B51155279B0F2900235E07 /* Array+Extension.swift in Sources */,
 				918F57BB2796EA6100FA5C5F /* MediaLibraryViewModel.swift in Sources */,
 				91B51157279B165E00235E07 /* MediaAlbumInfoView.swift in Sources */,

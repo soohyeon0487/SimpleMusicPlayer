@@ -11,12 +11,11 @@ import UIKit
 
 import SnapKit
 
-// TODO: 스와이프 다운으로 창 닫기
-
 class MainPlayerViewController: UIViewController {
     enum ViewProps {
         static let mediaControlButtonViewHeight: CGFloat = 60
     }
+
     // MARK: Internal
     func setViewModel(viewModel: MediaPlayerViewModel) {
         self.viewModel = viewModel
@@ -27,9 +26,11 @@ class MainPlayerViewController: UIViewController {
         super.viewDidLoad()
         self.drawUI()
         self.bindUI()
+        self.addPanGesture()
     }
 
     // MARK: UI Property
+    private lazy var modalSymbolTopView = ModalSymbolTopView()
     private lazy var albumInfoView = MediaAlbumInfoView()
     private lazy var timeProgressView = MediaPlaybackTimeProgressView(type: .withText)
     private lazy var mediaControlButtonView: MediaControlButtonView = {
@@ -47,14 +48,20 @@ class MainPlayerViewController: UIViewController {
     // MARK: Private
     private var viewModel: MediaPlayerViewModel?
     private var cancelBag = Set<AnyCancellable>()
+    private var initialOffset: CGPoint = .zero
 
     private func drawUI() {
         self.view.backgroundColor = .white
         self.view.layer.masksToBounds = true
         self.view.layer.cornerRadius = 16
+        self.view.addSubview(self.modalSymbolTopView)
+        self.modalSymbolTopView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(16)
+        }
         self.view.addSubview(self.albumInfoView)
         self.albumInfoView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalTo(self.modalSymbolTopView.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(self.albumInfoView.snp.width)
         }
@@ -113,6 +120,38 @@ class MainPlayerViewController: UIViewController {
                 self?.mediaControlButtonView.applyShuffleMode(mode)
             }
             .store(in: &self.cancelBag)
+    }
+
+    private func addPanGesture() {
+        print(#function, self.view.frame.origin)
+        self.view.addGestureRecognizer(
+            UIPanGestureRecognizer(
+                target: self,
+                action: #selector(self.viewPanned(_:))
+            )
+        )
+    }
+
+    @objc
+    private func viewPanned(_ sender: UIPanGestureRecognizer) {
+        let moveDistanceY = sender.translation(in: self.view).y
+        switch sender.state {
+        case .began:
+            self.initialOffset = self.view.frame.origin
+        case .changed:
+            self.view.frame.origin = CGPoint(
+                x: self.initialOffset.x,
+                y: self.initialOffset.y + max(0, moveDistanceY)
+            )
+        default:
+            if moveDistanceY > 150 {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                UIView.animate(withDuration: 0.2) {
+                    self.view.frame.origin = self.initialOffset
+                }
+            }
+        }
     }
 }
 
