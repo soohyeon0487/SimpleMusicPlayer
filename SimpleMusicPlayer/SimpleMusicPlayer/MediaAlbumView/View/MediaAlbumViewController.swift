@@ -18,6 +18,10 @@ class MediaAlbumViewController: UIViewController {
     enum Section {
         case track
     }
+    enum ViewProps {
+        static let rowHeight: CGFloat = 50
+        static let playButtonViewHeight: CGFloat = 80
+    }
 
     // MARK: Internal
     func setMediaAlbum(_ album: MediaAlbum) {
@@ -42,19 +46,13 @@ class MediaAlbumViewController: UIViewController {
     }
 
     // MARK: UI Property
-    private lazy var baseScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
+    private lazy var baseScrollView = UIScrollView()
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
     }()
-    private lazy var albumInfoView: MediaAlbumInfoView = {
-        let view = MediaAlbumInfoView()
-        return view
-    }()
+    private lazy var albumInfoView = MediaAlbumInfoView()
     private lazy var mediaPlayButtonView: MediaPlayButtonView = {
         let view = MediaPlayButtonView()
         view.delegate = self
@@ -65,7 +63,7 @@ class MediaAlbumViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.delegate = self
         tableView.register(cellClass: TrackListTableViewCell.self)
-        tableView.rowHeight = 50
+        tableView.rowHeight = ViewProps.rowHeight
         return tableView
     }()
 
@@ -108,7 +106,7 @@ class MediaAlbumViewController: UIViewController {
         self.mediaPlayButtonView.snp.makeConstraints {
             $0.top.equalTo(self.albumInfoView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(80)
+            $0.height.equalTo(ViewProps.playButtonViewHeight)
         }
     }
 
@@ -117,7 +115,7 @@ class MediaAlbumViewController: UIViewController {
         self.trackListTableView.snp.makeConstraints {
             $0.top.equalTo(self.mediaPlayButtonView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(400)
+            $0.height.equalTo(100)
             $0.bottom.equalToSuperview()
         }
 
@@ -147,7 +145,7 @@ class MediaAlbumViewController: UIViewController {
                 self.applyTrackSnapShot(album: album)
                 let estimatedHeight = self.trackListTableView.rowHeight * CGFloat(album?.count ?? 0)
                 self.trackListTableView.snp.updateConstraints {
-                    $0.height.equalTo(estimatedHeight)
+                    $0.height.equalTo(estimatedHeight + 16)
                 }
             }
             .store(in: &self.cancelBag)

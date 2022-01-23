@@ -17,6 +17,11 @@ class MediaLibraryViewController: UIViewController {
     enum Section {
         case album
     }
+    enum ViewProps {
+        static let itemSpacing: CGFloat = 16
+        static let albumNumberForRow: CGFloat = 2
+        static let albumCellRatio: CGFloat = 1.4
+    }
 
     // MARK: Life Cycle Function
     override func viewDidLoad() {
@@ -30,13 +35,18 @@ class MediaLibraryViewController: UIViewController {
     private lazy var libraryCollectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
         viewLayout.scrollDirection = .vertical
-        viewLayout.sectionInset = .init(top: 16, left: 16, bottom: 16, right: 16)
-        viewLayout.minimumLineSpacing = 16
-        viewLayout.minimumInteritemSpacing = 16
+        viewLayout.sectionInset = .init(
+            top: ViewProps.itemSpacing,
+            left: ViewProps.itemSpacing,
+            bottom: ViewProps.itemSpacing,
+            right: ViewProps.itemSpacing
+        )
+        viewLayout.minimumLineSpacing = ViewProps.itemSpacing
+        viewLayout.minimumInteritemSpacing = ViewProps.itemSpacing
         let insets = viewLayout.sectionInset.left + viewLayout.sectionInset.right
-        let spaces = viewLayout.minimumInteritemSpacing
-        let itemWidth = (UIScreen.main.bounds.width - insets - spaces) / 2
-        viewLayout.itemSize = CGSize(width: itemWidth, height: itemWidth * 1.4)
+        let spaces = viewLayout.minimumInteritemSpacing * (ViewProps.albumNumberForRow - 1)
+        let itemWidth = (UIScreen.main.bounds.width - insets - spaces) / ViewProps.albumNumberForRow
+        viewLayout.itemSize = CGSize(width: itemWidth, height: itemWidth * ViewProps.albumCellRatio)
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
         collectionView.delegate = self
@@ -71,7 +81,6 @@ class MediaLibraryViewController: UIViewController {
             $0.top.equalToSuperview()
             $0.leading.trailing.bottom.equalToSuperview()
         }
-
         self.dataSource = DataSource(
             collectionView: self.libraryCollectionView,
             cellProvider: { collectionView, indexPath, item -> MediaCollectionViewCell? in
@@ -95,9 +104,8 @@ class MediaLibraryViewController: UIViewController {
             }
             .store(in: &self.cancelBag)
         self.viewModel.$authorizationState
-            .replaceNil(with: true)
             .removeDuplicates()
-            .filter { !$0 }
+            .filter { $0 == false }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.showAuthorizationAlert()

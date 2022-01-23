@@ -11,12 +11,14 @@ import MediaPlayer
 
 import SnapKit
 
-
 // TODO: 스와이프 다운으로 창 닫기
 
 class MainPlayerViewController: UIViewController {
     enum MediaControlType: Int {
         case repeatMode = 1, backward, playing, forward, shuffleMode
+    }
+    enum ViewProps {
+        static let mediaControlButtonHeight = 40
     }
 
     // MARK: Internal
@@ -212,27 +214,27 @@ class MainPlayerViewController: UIViewController {
         self.mediaControlStackView.snp.makeConstraints {
             $0.top.equalTo(self.playingProgressView.snp.bottom).offset(32)
             $0.leading.trailing.equalToSuperview().inset(32)
-            $0.height.equalTo(40)
+            $0.height.equalTo(ViewProps.mediaControlButtonHeight)
         }
         self.mediaControlStackView.addArrangedSubview(self.repeatModeButton)
         self.repeatModeButton.snp.makeConstraints {
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(ViewProps.mediaControlButtonHeight)
         }
         self.mediaControlStackView.addArrangedSubview(self.backwardButton)
         self.backwardButton.snp.makeConstraints {
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(ViewProps.mediaControlButtonHeight)
         }
         self.mediaControlStackView.addArrangedSubview(self.playingButton)
         self.playingButton.snp.makeConstraints {
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(ViewProps.mediaControlButtonHeight)
         }
         self.mediaControlStackView.addArrangedSubview(self.forwardButton)
         self.forwardButton.snp.makeConstraints {
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(ViewProps.mediaControlButtonHeight)
         }
         self.mediaControlStackView.addArrangedSubview(self.shuffleModeButton)
         self.shuffleModeButton.snp.makeConstraints {
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(ViewProps.mediaControlButtonHeight)
         }
         self.view.addSubview(self.volumeView)
         self.volumeView.snp.makeConstraints {

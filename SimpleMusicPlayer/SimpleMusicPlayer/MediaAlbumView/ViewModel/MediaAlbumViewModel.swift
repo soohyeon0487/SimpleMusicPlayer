@@ -38,5 +38,6 @@ class MediaAlbumViewModel {
 
     // MARK: Private
     private let playerManager = MediaPlayerManager.shared
+    
     private var cancelBag = Set<AnyCancellable>()
 }

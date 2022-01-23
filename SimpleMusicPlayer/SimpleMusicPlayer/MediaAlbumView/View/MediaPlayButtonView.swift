@@ -65,16 +65,14 @@ class MediaPlayButtonView: UIView {
         self.addSubview(self.playButton)
         self.playButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.top.bottom.equalToSuperview().inset(16)
-            $0.leading.equalToSuperview().offset(16)
+            $0.top.leading.bottom.equalToSuperview().inset(16)
             $0.trailing.equalTo(self.snp.centerX).offset(-8)
         }
         self.addSubview(self.randomPlayButton)
         self.randomPlayButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.top.bottom.equalToSuperview().inset(16)
+            $0.top.trailing.bottom.equalToSuperview().inset(16)
             $0.leading.equalTo(self.snp.centerX).offset(8)
-            $0.trailing.equalToSuperview().offset(-16)
         }
     }
 

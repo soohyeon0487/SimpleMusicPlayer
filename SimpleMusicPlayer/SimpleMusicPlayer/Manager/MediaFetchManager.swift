@@ -10,10 +10,6 @@ import Foundation
 import MediaPlayer
 import StoreKit
 
-enum MediaFetchError: Error {
-    case permissionDenied
-}
-
 class MediaFetchManager {
     // MARK: Singleton
     static let shared = MediaFetchManager()

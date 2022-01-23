@@ -18,6 +18,7 @@ enum ResourceKey {
     static let forward = "forward.fill"
     static let musicNote = "music.note"
     static let ellipsis = "ellipsis"
+    
     // Color
     static let primaryTint = "color.primaryTint"
 }

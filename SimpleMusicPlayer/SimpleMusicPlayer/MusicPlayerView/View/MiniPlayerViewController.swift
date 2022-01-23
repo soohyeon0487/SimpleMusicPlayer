@@ -34,7 +34,7 @@ class MiniPlayerViewController: UIViewController {
         view.addGestureRecognizer(
             UITapGestureRecognizer(
                 target: self,
-                action: #selector(viewTapped(_:))
+                action: #selector(self.viewTapped(_:))
             )
         )
         return view
